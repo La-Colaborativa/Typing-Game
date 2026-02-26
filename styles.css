@@ -62,4 +62,47 @@ body {
   margin-top: 10px;
   font-size: 0.9rem;
   color: #bdc3c7;
+  user-select: none;
+}
+
+/* Modal background overlay */
+.settings-modal {
+  font-size: 0.9rem;
+  display: none; /* Hide content */
+  position: fixed;
+  z-index: 10000; /* Make sure it takes priority over others */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.450); /* When the modal is focused */
+  overflow: auto; /* Scrolling in case we add more options */
+  text-align: center;
+}
+
+/* Modal content */
+.settings-content {
+  background-color: rgba(67, 67, 67, 0.67);
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 2px solid rgba(200, 200, 200, 0.3);
+  width: 80%; /* Could be responsive */
+  max-width: 500px;
+  text-align: left;
+  /*text-decoration: underline;*/
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #e74c3c;
+  text-decoration: none;
+  cursor: pointer;
 }

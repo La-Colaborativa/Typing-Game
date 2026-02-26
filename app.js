@@ -1,6 +1,11 @@
 // JAVASCRIPT: The Logic
 
 // 1. The Word Bank
+
+/*! We can split these into chunks based off of settings:
+  ! Option for random sentences (multiple words from word bank combined)
+  ! or preset sentences.
+  !*/
 const words = [
   "javascript",
   "function",
@@ -17,14 +22,32 @@ const words = [
   "python",
   "application",
   "network",
+  "test",
+  "method",
+  "artificial",
+  "synthetic",
+  "data scientist",
+  "software",
+  "software engineer",
+  "dynamic",
+  "packet",
+  "internet",
+  "development",
+  "debugging",
+  "debug",
+  "super long text that might not fit the screen",
+  "incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it."
 ];
 
 // 2. Select Elements
 const wordDisplayElement = document.getElementById("word-display");
 const inputElement = document.getElementById("input-field");
 const scoreElement = document.getElementById("score");
+// Settings Elements
+var modal = document.getElementById("settingsModal");
+var settingsButton = document.getElementById("Settings");
 
-let currentWord = "";
+let currentWord = null;
 let score = 0;
 
 // 3. Initialize Game
@@ -43,7 +66,7 @@ function showNewWord() {
   // Clear the display
   wordDisplayElement.innerHTML = "";
 
-  // Split word into individual spans for character styling
+  // Split word into individual spans for character styling ("cat" into 'c', 'a', 't'.)
   currentWord.split("").forEach((character) => {
     const charSpan = document.createElement("span");
     charSpan.innerText = character;
@@ -87,6 +110,26 @@ function processInput() {
     score++;
     scoreElement.innerText = score;
     showNewWord();
+  }
+}
+
+// Get the element that closes the modal ("x")
+var closeSpan = document.getElementsByClassName("close")[0];
+
+// Open settings modal.
+settingsButton.onclick = function() {
+  modal.style.display = "block";
+}
+
+// Close settings modal.
+closeSpan.onclick = function() {
+  modal.style.display = "none";
+}
+
+// If clicking outside of modal, close modal.
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
 }
 
