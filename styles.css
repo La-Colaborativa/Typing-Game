@@ -19,6 +19,7 @@ body {
   text-align: center;
   width: 80%;
   max-width: 600px;
+  position: relative;
 }
 
 /* The word to type */
@@ -53,9 +54,12 @@ body {
 }
 
 #score-board {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 1.2rem;
   color: #ecf0f1;
+}
+.hidden {
+  display: none;
 }
 
 .message {
@@ -63,6 +67,16 @@ body {
   font-size: 0.9rem;
   color: #bdc3c7;
   user-select: none;
+}
+
+.button {
+  max-width : 80px;
+  min-width: 80px;
+  display: block;
+  margin-left: auto;
+  position: absolute;
+  right: 15px;
+  width: auto;
 }
 
 /* Modal background overlay */

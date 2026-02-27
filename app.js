@@ -36,13 +36,29 @@ const words = [
   "debugging",
   "debug",
   "super long text that might not fit the screen",
-  "incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it."
+  "incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it.",
+  "c##",
+  "linux",
+  "windows",
+  "mac",
+  "unix"
 ];
 
-// 2. Select Elements
+// 2a. Select Settings Elements
+let settings_disableScore = false;
+document.getElementById("settings-disable-score").innerHTML = settings_disableScore;
+const getScoreboard = document.getElementById('score-board');
+if(settings_disableScore){
+  getScoreboard.classList.add('hidden');
+} else {
+  getScoreboard.classList.remove('hidden');
+}
+
+// 2b. Select Elements
 const wordDisplayElement = document.getElementById("word-display");
 const inputElement = document.getElementById("input-field");
 const scoreElement = document.getElementById("score");
+
 // Settings Elements
 var modal = document.getElementById("settingsModal");
 var settingsButton = document.getElementById("Settings");
