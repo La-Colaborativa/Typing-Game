@@ -7,27 +7,30 @@
     <title>Simple Typing Game</title>
   </head>
   <body>
+    <div id="word-display" class="word-container"></div>
     <div class="container">
-      <div id="word-display"></div>
-
-      <input
-        type="text"
-        id="input-field"
-        placeholder="Start typing..."
-        autofocus
-        autocomplete="off"
-      />
-
+        
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="input-field"
+          placeholder="Start typing..."
+          autofocus
+          autocomplete="off"
+        />
+        <button id="Restart" class="restart-button">Restart</button>
+      </div>
       <div id="score-board">Score: <span id="score">0</span></div>
       <div class="message">Type the word exactly as shown!</div>
-      <button id="Settings"class= "button">Settings</button>
+      <button id="Settings" class="settings-button">Settings</button>
       <div id="settingsModal" class="settings-modal">
         <h2>Settings Screen</h2>
         <div class="settings-content">
           <span class="close">&times;</span>
-          <p>• Disable Score: <span id="settings-disable-score"></p>
+          <p>• Disable Score: <span id="settings-disable-score"></span></p>
           <p>• Word Limit: </p>
           <p>• Error Restart: </p>
+          <p>• Restart Score: <span id="settings-resest-score"></span></p>
         </div>
       </div>
     </div>

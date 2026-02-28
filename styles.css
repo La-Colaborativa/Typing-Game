@@ -11,6 +11,29 @@ body {
   margin: 0;
 }
 
+.word-container {
+  background-color: #34495e;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+
+  display: grid;
+  place-items: center;
+
+  width: 50%;
+  height: 80%;
+
+  min-width: 75%;
+  min-height: 25%;
+  max-width: 75%;
+  max-height: 25%;
+  
+  overflow: auto;
+  /* position: absolute; */
+  /* transform: translateY(-100%); */
+  word-wrap: keep-all;
+}
+
 .container {
   background-color: #34495e;
   padding: 2rem;
@@ -18,17 +41,36 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
   width: 80%;
-  max-width: 600px;
+  max-width: 1200px;
   position: relative;
 }
 
 /* The word to type */
 #word-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centered lines */
+  align-items: center;
+  text-align: center;
+
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 1rem;
   letter-spacing: 2px;
+  white-space: pre-wrap;
   user-select: none; /* Prevents highlighting the text */
+}
+
+/* Each word moves as a unit to next line */
+.word {
+  display: inline-flex;
+  white-space: nowrap;  /* ✅ prevents breaking within the word */
+}
+
+/* Visible gap between words */
+.space {
+  display: inline-block;
+  width: 0.6ch;         /* tweak this spacing */
 }
 
 /* Individual character styling for feedback */
@@ -41,15 +83,22 @@ body {
   text-decoration: underline;
 }
 
+.input-wrap {
+  position: relative;
+  margin: 0 auto;
+}
+
 /* The input box (hidden but active) */
 #input-field {
   width: 50%;
   padding: 10px;
+  min-width: 260px;
   font-size: 1.2rem;
   border: none;
   border-radius: 5px;
   outline: none;
   text-align: center;
+  box-sizing: border-box;
   opacity: 0.5; /* Keeping it visible so you see cursor, but faint */
 }
 
@@ -69,7 +118,7 @@ body {
   user-select: none;
 }
 
-.button {
+.settings-button {
   max-width : 80px;
   min-width: 80px;
   display: block;
@@ -77,6 +126,16 @@ body {
   position: absolute;
   right: 15px;
   width: auto;
+}
+
+.restart-button {
+  position: absolute;
+  right: -17px;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 80px;
+  padding: 10px 14px;
+  cursor: pointer;
 }
 
 /* Modal background overlay */
@@ -89,14 +148,14 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.450); /* When the modal is focused */
+  background-color: rgba(0, 0, 0, 0.500); /* When the modal is focused */
   overflow: auto; /* Scrolling in case we add more options */
   text-align: center;
 }
 
 /* Modal content */
 .settings-content {
-  background-color: rgba(67, 67, 67, 0.67);
+  background-color: rgba(67, 67, 67, 0.95);
   margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 2px solid rgba(200, 200, 200, 0.3);

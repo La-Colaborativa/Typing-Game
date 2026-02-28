@@ -1,0 +1,11 @@
+# Quick changelog.
+- Made it so the website scales a bit better when shrinking window size.
+- Changes how spans and input are read so I can make the visuals more cohesive (scaling the page will work pretty well with odd window sizes)
+- Added two working buttons to reset the score and displayed word, and another for opening settings.
+    * The settings only has two properly tracked options.
+    * Reset score can be configured, meaning you can keep score with a reset button hit (only changes displayed word) and keep the score, or reset the score to zero and change displayed word.
+
+# Soon to add:
+- Figure out how to display an image in another container below so we can get someone to make art and showcase how the button should be pressed, similar to typing.com's UI (maybe I can hire an artist I know).
+- Autoscrolling for the displayed text (if we have a long sentence it is scroll-able but it doesn't focus on it and scroll for you, you manually need to right now).
+- More options for customization.
