@@ -29,8 +29,6 @@ body {
   max-height: 25%;
   
   overflow: auto;
-  /* position: absolute; */
-  /* transform: translateY(-100%); */
   word-wrap: keep-all;
 }
 
@@ -49,7 +47,7 @@ body {
 #word-display {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* centered lines */
+  justify-content: center;
   align-items: center;
   text-align: center;
 
@@ -61,25 +59,30 @@ body {
   user-select: none; /* Prevents highlighting the text */
 }
 
-/* Each word moves as a unit to next line */
+/* Each word moves as one to next line */
 .word {
   display: inline-flex;
-  white-space: nowrap;  /* ✅ prevents breaking within the word */
+  white-space: nowrap;  /* Doesn't break within the word */
 }
 
-/* Visible gap between words */
+/* Gap between words */
 .space {
   display: inline-block;
-  width: 0.6ch;         /* tweak this spacing */
+  width: 0.6ch;
 }
 
-/* Individual character styling for feedback */
+/* Feedback for user */
 .correct {
   color: #2ecc71; /* Green */
 }
 
 .incorrect {
   color: #e74c3c; /* Red */
+  text-decoration: underline;
+}
+
+.highlight {
+  color: #27b9e6;
   text-decoration: underline;
 }
 

@@ -1,4 +1,7 @@
 # Quick changelog.
+- If using Visual Studio Code, install the "Live Server" extension or it will not properly import modules (word-bank.js)
+- Added a setting for a blue underline/color of the current character you are on.
+
 - Made it so the website scales a bit better when shrinking window size.
 - Changes how spans and input are read so I can make the visuals more cohesive (scaling the page will work pretty well with odd window sizes)
 - Added two working buttons to reset the score and displayed word, and another for opening settings.
@@ -8,4 +11,5 @@
 # Soon to add:
 - Figure out how to display an image in another container below so we can get someone to make art and showcase how the button should be pressed, similar to typing.com's UI (maybe I can hire an artist I know).
 - Autoscrolling for the displayed text (if we have a long sentence it is scroll-able but it doesn't focus on it and scroll for you, you manually need to right now).
+- Add a settings for skipping space inputs.
 - More options for customization.

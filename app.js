@@ -6,53 +6,18 @@
   ! Option for random sentences (multiple words from word bank combined)
   ! or preset sentences.
   !*/
-const words = [
-  "javascript",
-  "function",
-  "variable",
-  "syntax",
-  "browser",
-  "developer",
-  "coding",
-  "algorithm",
-  "interface",
-  "keyboard",
-  "monitor",
-  "database",
-  "python",
-  "application",
-  "network",
-  "test",
-  "method",
-  "artificial",
-  "synthetic",
-  "data scientist",
-  "software",
-  "software engineer",
-  "dynamic",
-  "packet",
-  "internet",
-  "development",
-  "debugging",
-  "debug",
-  "c##",
-  "linux",
-  "windows",
-  "mac",
-  "unix",
-  "operating system",
-  "super long text that might not fit the screen",
-  // "incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it.",
-  // "incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it.",
-  
-];
+
+import { words, phrases } from './word-banks.js';
+
 // 2a. Settings Variables
-let settings_disableScore = false;  // Disable Score: <bool>
-let settings_restartZerosScore = true;  // Hitting Restart sets score to zero.
+let settings_disableScore = false;      // DEFAULT: false | <bool> -> Disable Score
+let settings_restartZerosScore = true;  // DEFAULT: true  | <bool> -> Hitting Restart sets score to zero
+let settings_color_current = true;      // DEFAULT: false | <bool> -> Color the current word in blue (disabled by default because it clutters the screen).
 
 // 2a. Select Settings Elements
 document.getElementById("settings-disable-score").innerHTML = settings_disableScore;
-document.getElementById("settings-resest-score").innerHTML = settings_restartZerosScore;
+document.getElementById("settings-resets-score").innerHTML = settings_restartZerosScore;
+document.getElementById("settings-highlight-current").innerHTML = settings_color_current;
 
 const getScoreboard = document.getElementById('score-board');
 if(settings_disableScore){
@@ -83,8 +48,15 @@ function init() {
 
 // 4. Pick and Display a Random Word
 function showNewWord() {
-  const randomIndex = Math.floor(Math.random() * words.length);
-  currentWord = words[randomIndex];
+  let wordsOrPhraseGenerator = Math.floor(Math.random() * 2);
+  
+  if(wordsOrPhraseGenerator == 0){
+    const randomIndex = Math.floor(Math.random() * words.length);
+    currentWord = words[randomIndex];
+  } else {
+    const randomIndex = Math.floor(Math.random() * phrases.length);
+    currentWord = phrases[randomIndex];
+  }
 
   wordDisplayElement.innerHTML = "";
 
@@ -117,6 +89,14 @@ function showNewWord() {
 
       wordDisplayElement.appendChild(spaceSpan);
     }
+
+    if(settings_color_current){
+    // Highlight first char when setting is on.
+    const chars = wordDisplayElement.querySelectorAll("[data-char]");
+    
+    if (chars.length > 0) chars[0].classList.add("highlight");
+    }
+
   });
 
   inputElement.value = "";
@@ -127,12 +107,23 @@ function processInput() {
   const arrayQuote = wordDisplayElement.querySelectorAll("[data-char]");
   const arrayValue = inputElement.value.split("");
 
+  const currentChar = arrayValue.length;
+
+  if (settings_color_current){
+    // Remove highlight
+    arrayQuote.forEach(span => span.classList.remove("highlight"));
+    // Add highlight for current
+    if (currentChar < arrayQuote.length){
+      arrayQuote[currentChar].classList.add("highlight");
+    }
+  }
+
   let correctSoFar = true;
 
   // Loop through each character span in the displayed word
   arrayQuote.forEach((characterSpan, index) => {
     const character = arrayValue[index];
-
+  
     if (character == null) {
       // Character hasn't been typed yet
       characterSpan.classList.remove("correct");
@@ -140,8 +131,8 @@ function processInput() {
       correctSoFar = false;
     } else if (character === characterSpan.dataset.char) {
       // Correct character
-      characterSpan.classList.add("correct");
       characterSpan.classList.remove("incorrect");
+      characterSpan.classList.add("correct");
     } else {
       // Incorrect character
       characterSpan.classList.remove("correct");

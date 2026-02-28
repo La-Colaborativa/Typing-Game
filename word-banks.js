@@ -1,0 +1,51 @@
+const words = [
+  "javascript",
+  "function",
+  "variable",
+  "syntax",
+  "browser",
+  "developer",
+  "coding",
+  "algorithm",
+  "interface",
+  "keyboard",
+  "monitor",
+  "database",
+  "python",
+  "application",
+  "network",
+  "test",
+  "method",
+  "artificial",
+  "synthetic",
+  "data scientist",
+  "software",
+  "software engineer",
+  "dynamic",
+  "packet",
+  "internet",
+  "development",
+  "debugging",
+  "debug",
+  "c##",
+  "linux",
+  "windows",
+  "mac",
+  "unix",
+  "operating system",
+  "google"
+];
+
+const phrases = [
+  "super long text that might not fit the screen",
+  "object oriented programming",
+  "The quick brown fox jumps over 13 lazy dogs",
+  "A friend loves at all times, and a brother is born for a time of adversity.",
+  "That's one small step for man, one giant leap for mankind",
+  "Do unto others as you would have them do unto you.",
+  "If you want to know what a man's like, take a good look at how he treats his inferiors, not his equals.",
+  "incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it.",
+  'It does not matter how slowly you go as long as you do not stop.'
+]
+
+export {words, phrases};
