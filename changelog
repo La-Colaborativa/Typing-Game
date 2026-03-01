@@ -1,0 +1,19 @@
+# --- [ Changelog & Histroy ] ---
+Change Date: 3/1/2026 | 3:07pm/15:07 EST | v0.1.1 
+- Moved changelog:
+    * New location/file for changes as to not clutter the README.
+- Updated README:
+    * Fixed how the README is displayed (made pretty when viewing with GitHub).
+
+Change Date: 3/1/2026 | 1:53pm/01:53 EST | v0.1.0 
+
+NOTE: Previous minor pushes were not recorded, they have been compiled here instead.
+- Added options:
+    * Created a "Settings" button on the bottom-right. 
+    * Highlight Word: underlines and colors the current character blue.
+    * Disable Score: disables the component from showing up on screen (still secretly tracked).
+    * Restart Score: score gets reset when the "Reset" button is clicked (still changes displayed text).
+- Website Scaling:
+    * Made it so the website scales a bit better when shrinking window size and components don't freak out.
+- Logic Changes:
+    * Changed how spans and input are read so I can make the visuals more cohesive (scaling the page will work pretty well with odd window sizes)

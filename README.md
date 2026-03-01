@@ -1,6 +1,15 @@
+# Tech Stack:
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+
+# Program Type:
+Typing game for private use.
+
 # Setup:
 - If using Visual Studio Code, install the "Live Server" extension or it will not properly import modules (word-bank.js)
 - Right-click the "index.html" file and hit "Open with Live Server" button (should be on top of list).
+
 
 # --- [ General Information ] --- #
 For the sake of documentation, the phrase "attempt" will mean the following:
@@ -22,22 +31,7 @@ For the sake of documentation, the phrase "attempt" will mean the following:
     * Error Restart:          <bool> | Any errors in the attempt instantly restarts the attempt.
     * Skip Spaces:            <bool> | Auto-fills space characters as to not make the user have to enter space.
 
-
-# --- [ Changelog & Histroy ] ---
-Change Date: 3/1/2026 | 1:53pm/01:53 EST | v0.1.0 
-
-NOTE: Previous minor pushes were not recorded, they have been compiled here instead.
-- Added options:
-    * Created a "Settings" button on the bottom-right. 
-    * Highlight Word: underlines and colors the current character blue.
-    * Disable Score: disables the component from showing up on screen (still secretly tracked).
-    * Restart Score: score gets reset when the "Reset" button is clicked (still changes displayed text).
-- Website Scaling:
-    * Made it so the website scales a bit better when shrinking window size and components don't freak out.
-- Logic Changes:
-    * Changed how spans and input are read so I can make the visuals more cohesive (scaling the page will work pretty well with odd window sizes)
-
 # Soon to add:
 - Figure out how to display an image in another container below so we can get someone to make art and showcase how the button should be pressed, similar to typing.com's UI (maybe I can hire an artist I know).
 - Autoscrolling for the displayed text (if we have a long sentence it is scroll-able but it doesn't focus on it and scroll for you, you manually need to right now).
-- More options for customization.
+- More options for customization such as Word Limit, Words Checkbox, Phrases Checkbox, Sentences Checkbox, Error Restart, & Skip Spaces.
