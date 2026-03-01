@@ -1,15 +1,43 @@
-# Quick changelog.
+# Setup:
 - If using Visual Studio Code, install the "Live Server" extension or it will not properly import modules (word-bank.js)
-- Added a setting for a blue underline/color of the current character you are on.
+- Right-click the "index.html" file and hit "Open with Live Server" button (should be on top of list).
 
-- Made it so the website scales a bit better when shrinking window size.
-- Changes how spans and input are read so I can make the visuals more cohesive (scaling the page will work pretty well with odd window sizes)
-- Added two working buttons to reset the score and displayed word, and another for opening settings.
-    * The settings only has two properly tracked options.
-    * Reset score can be configured, meaning you can keep score with a reset button hit (only changes displayed word) and keep the score, or reset the score to zero and change displayed word.
+# --- [ General Information ] --- #
+For the sake of documentation, the phrase "attempt" will mean the following:
+- A word, phrase, or sentence being present on the screen and the user having to complete it.
+
+# Settings:
+- Varity of customizable options are present. Look through the list below.
+    * Highlight Word:         <bool> | Shows the current character being underlined and colored in blue.
+    * Disable Score:          <bool> | Disables score component from being present on the bottom of input (hidden, still tracks).
+    * Restart Score:          <bool> | Restart button resetting the score.
+    * Skip Repeats:           <bool> | Stops from potentially getting the same prompt (generates another one instead).
+    * Store Skip Repeats:      <int> | Keeps a list of up to <int> of repeated words. If the current word matches any in that list, generate a new word.
+    * Skip With Errors:        <int> | When the user is at the end of the attempt but has at least one error, skip and generate new word.
+    NEED TO COMPLETE vvv -----------------------
+    * Word Limit:         <dropdown> | Set the word limit of the phrase you get. Phrase must be enabled.
+    * Words Checkbox:     <checkbox> | Allows words being available in the pool.
+    * Phrases Checkbox:   <checkbox> | Allows phrases being available in the pool.
+    * Sentences Checkbox: <checkbox> | Allows sentences being available in the pool.
+    * Error Restart:          <bool> | Any errors in the attempt instantly restarts the attempt.
+    * Skip Spaces:            <bool> | Auto-fills space characters as to not make the user have to enter space.
+
+
+# --- [ Changelog & Histroy ] ---
+Change Date: 3/1/2026 | 1:53pm/01:53 EST | v0.1.0 
+
+NOTE: Previous minor pushes were not recorded, they have been compiled here instead.
+- Added options:
+    * Created a "Settings" button on the bottom-right. 
+    * Highlight Word: underlines and colors the current character blue.
+    * Disable Score: disables the component from showing up on screen (still secretly tracked).
+    * Restart Score: score gets reset when the "Reset" button is clicked (still changes displayed text).
+- Website Scaling:
+    * Made it so the website scales a bit better when shrinking window size and components don't freak out.
+- Logic Changes:
+    * Changed how spans and input are read so I can make the visuals more cohesive (scaling the page will work pretty well with odd window sizes)
 
 # Soon to add:
 - Figure out how to display an image in another container below so we can get someone to make art and showcase how the button should be pressed, similar to typing.com's UI (maybe I can hire an artist I know).
 - Autoscrolling for the displayed text (if we have a long sentence it is scroll-able but it doesn't focus on it and scroll for you, you manually need to right now).
-- Add a settings for skipping space inputs.
 - More options for customization.

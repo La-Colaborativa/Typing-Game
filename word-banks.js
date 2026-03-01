@@ -18,9 +18,7 @@ const words = [
   "method",
   "artificial",
   "synthetic",
-  "data scientist",
   "software",
-  "software engineer",
   "dynamic",
   "packet",
   "internet",
@@ -32,11 +30,33 @@ const words = [
   "windows",
   "mac",
   "unix",
-  "operating system",
-  "google"
+  "google",
+  "API",
+  "bug",
+  "integration",
+  "recursive",
+  "regressive",
+  "adjacent",
+  "encryption",
+  "IDE",
+  "library",
+  "perpendicular",
+  "environment",
+  "c++"
 ];
 
 const phrases = [
+  "data scientist",
+  "operating system",
+  "software engineer",
+  "rainbow garden",
+  "metal harbor",
+  "big O notation",
+  "cloud computing",
+  "data structure"
+]
+
+const sentences = [
   "super long text that might not fit the screen",
   "object oriented programming",
   "The quick brown fox jumps over 13 lazy dogs",
@@ -44,8 +64,8 @@ const phrases = [
   "That's one small step for man, one giant leap for mankind",
   "Do unto others as you would have them do unto you.",
   "If you want to know what a man's like, take a good look at how he treats his inferiors, not his equals.",
-  "incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it.",
-  'It does not matter how slowly you go as long as you do not stop.'
+  //"incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it.",
+  "It does not matter how slowly you go as long as you do not stop."
 ]
 
-export {words, phrases};
+export {words, phrases, sentences};

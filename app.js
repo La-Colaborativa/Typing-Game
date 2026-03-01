@@ -1,23 +1,27 @@
 // JAVASCRIPT: The Logic
 
-// 1. The Word Bank
+// 1. The Word Banks (Single word, short phrase, or full sentences.)
 
-/*! We can split these into chunks based off of settings:
-  ! Option for random sentences (multiple words from word bank combined)
-  ! or preset sentences.
-  !*/
-
-import { words, phrases } from './word-banks.js';
+import { words, phrases, sentences } from './word-banks.js';
 
 // 2a. Settings Variables
-let settings_disableScore = false;      // DEFAULT: false | <bool> -> Disable Score
-let settings_restartZerosScore = true;  // DEFAULT: true  | <bool> -> Hitting Restart sets score to zero
-let settings_color_current = true;      // DEFAULT: false | <bool> -> Color the current word in blue (disabled by default because it clutters the screen).
+let settings_color_current = true;     // DEFAULT:  true | Shows the current character being underlined and colored in blue.
+let settings_disableScore = false;     // DEFAULT: false | Disables score component from being present on the bottom of input (hidden, still tracks).
+let settings_reset_score = true;       // DEFAULT:  true | Restart button resetting the score.
+let settings_skip_repeats = true;      // DEFAULT: false | Stops from potentially getting the same prompt (generates another one instead).
+let settings_store_skips = 10;         // DEFAULT:    10 | How many items are in the list before they can reappear.
+let settings_end_incomplete = false;   // DEFAULT: false | If the user is at the end of the word limit but incorrect characters exist, move on.
+
+let repeat_list = [];
+window.repeat_list = repeat_list; // For DevTools Console testing in the browser. Use "repeat_list" in the console. 
 
 // 2a. Select Settings Elements
 document.getElementById("settings-disable-score").innerHTML = settings_disableScore;
-document.getElementById("settings-resets-score").innerHTML = settings_restartZerosScore;
+document.getElementById("settings-reset-score").innerHTML = settings_reset_score;
 document.getElementById("settings-highlight-current").innerHTML = settings_color_current;
+document.getElementById("settings-skip-repeats").innerHTML = settings_skip_repeats;
+document.getElementById("settings-store-skips").innerHTML = settings_store_skips;
+document.getElementById("settings-end-incomplete").innerHTML = settings_end_incomplete;
 
 const getScoreboard = document.getElementById('score-board');
 if(settings_disableScore){
@@ -26,40 +30,49 @@ if(settings_disableScore){
   getScoreboard.classList.remove('hidden');
 }
 
-// 2b. Select Elements
+// 2b. Select Browser Elements
 const wordDisplayElement = document.getElementById("word-display");
 const inputElement = document.getElementById("input-field");
 const scoreElement = document.getElementById("score");
-
-// Settings Elements
 var modal = document.getElementById("settingsModal");
 var settingsButton = document.getElementById("Settings");
-var restartButton = document.getElementById("Restart")
+var restartButton = document.getElementById("Restart");
 
 let currentWord = null;
 let score = 0;
 
 // 3. Initialize Game
-inputElement.addEventListener("input", processInput);  // Moved outside so it doesn't keep creating new input listeners when restart is hit.
+inputElement.addEventListener("input", processInput);  // Moved outside so it doesn't keep creating new input listeners when restart is hit (overflow).
+
+
+
 function init() {
   showNewWord();
-  // Listen for every keystroke
 }
 
 // 4. Pick and Display a Random Word
 function showNewWord() {
-  let wordsOrPhraseGenerator = Math.floor(Math.random() * 2);
+  // Picks randomly between words, phrases, or sentences.
+  let textGenerator = Math.floor(Math.random() * 3);
   
-  if(wordsOrPhraseGenerator == 0){
+  if(textGenerator == 0){
     const randomIndex = Math.floor(Math.random() * words.length);
     currentWord = words[randomIndex];
-  } else {
+  } else if (textGenerator == 1) {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     currentWord = phrases[randomIndex];
+  } else {
+    const randomIndex = Math.floor(Math.random() * sentences.length);
+    currentWord = sentences[randomIndex];
   }
 
-  wordDisplayElement.innerHTML = "";
+  if (repeat_list.includes(currentWord)){
+    showNewWord();
+  }
+  // Update the input-field to limit the length to the currentWord
+    document.getElementById("input-field").maxLength = currentWord.length;
 
+  wordDisplayElement.innerHTML = "";
   const parts = currentWord.split(" ");
 
   parts.forEach((word, wordIndex) => {
@@ -90,8 +103,7 @@ function showNewWord() {
       wordDisplayElement.appendChild(spaceSpan);
     }
 
-    if(settings_color_current){
-    // Highlight first char when setting is on.
+    if(settings_color_current){ // Highlight first char when setting is on.
     const chars = wordDisplayElement.querySelectorAll("[data-char]");
     
     if (chars.length > 0) chars[0].classList.add("highlight");
@@ -100,6 +112,7 @@ function showNewWord() {
   });
 
   inputElement.value = "";
+  return currentWord;
 }
 
 // 5. Compare Input to Target
@@ -123,7 +136,7 @@ function processInput() {
   // Loop through each character span in the displayed word
   arrayQuote.forEach((characterSpan, index) => {
     const character = arrayValue[index];
-  
+
     if (character == null) {
       // Character hasn't been typed yet
       characterSpan.classList.remove("correct");
@@ -142,12 +155,36 @@ function processInput() {
   });
 
   // Check if the word is fully complete and correct
+  if (!correctSoFar && settings_end_incomplete &&arrayValue.length === currentWord.length) {
+    if (score > 0){
+      score--;
+    }
+
+    scoreElement.innerText = score;
+    repeat_list.push(currentWord);
+
+    // Store word for skipping setting
+    if(settings_skip_repeats){
+      if(settings_skip_repeats && repeat_list.length > settings_store_skips){
+        repeat_list.splice(0, repeat_list.length - settings_store_skips); // Targets last
+      }
+    }
+    showNewWord();
+  }
   if (correctSoFar && arrayValue.length === currentWord.length) {
     score++;
     scoreElement.innerText = score;
+    repeat_list.push(currentWord);
+
+    if(settings_skip_repeats){
+      if(settings_skip_repeats && repeat_list.length > settings_store_skips){
+        repeat_list.splice(0, repeat_list.length - settings_store_skips); // Targets last
+      }
+    }
     showNewWord();
   }
 }
+
 
 // Get the element that closes the modal.
 var closeSpan = document.getElementsByClassName("close")[0];
@@ -171,7 +208,7 @@ window.onclick = function(event) {
 
 // Restart button checks if settings is enabled to disable/enable score reset.
 restartButton.onclick = function(){
-  if (settings_restartZerosScore){
+  if (settings_reset_score){
     score = 0;
     scoreElement.innerText = score;
   }
