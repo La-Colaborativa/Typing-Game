@@ -38,11 +38,11 @@
         <li><a href=#start-up-steps>Start-up Steps</a>
       </ul>
     </li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
       <ul>
        <li><a href="#contributors">Contributors</a></li>
       </ul>
+    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
