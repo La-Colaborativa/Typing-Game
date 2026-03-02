@@ -1,12 +1,22 @@
 # --- [ Changelog & Histroy ] ---
-Change Date: 3/1/2026 | 3:07pm/15:07 EST | v0.1.1 
+
+Record of all changelog data.
+
+# --- Changelog #3 ( 3/1/2026 | 7:01pm/19:01 EST | v0.1.2 ) --- #
+- Updated README:
+    * Reformatted it entirely.
+- Added an images folder.
+    * Contains screenshots/mock-up images.
+- Fixed previous changelog's content to specify version.
+
+# --- Changelog #2 ( 3/1/2026 | 3:07pm/15:07 EST | v0.1.1 ) --- #
 - Moved changelog:
     * New location/file for changes as to not clutter the README.
 - Updated README:
     * Fixed how the README is displayed (made pretty when viewing with GitHub).
 
-Change Date: 3/1/2026 | 1:53pm/01:53 EST | v0.1.0 
 
+# --- Changelog #1 ( 3/1/2026 | 1:53pm/01:53 EST | v0.1.0 )--- #
 NOTE: Previous minor pushes were not recorded, they have been compiled here instead.
 - Added options:
     * Created a "Settings" button on the bottom-right. 
@@ -16,4 +26,4 @@ NOTE: Previous minor pushes were not recorded, they have been compiled here inst
 - Website Scaling:
     * Made it so the website scales a bit better when shrinking window size and components don't freak out.
 - Logic Changes:
-    * Changed how spans and input are read so I can make the visuals more cohesive (scaling the page will work pretty well with odd window sizes)
+    * Changed how spans and input are read so I can make the visuals more cohesive (scaling the page will work pretty well with odd window sizes).
