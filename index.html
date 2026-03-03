@@ -7,21 +7,38 @@
     <title>Simple Typing Game</title>
   </head>
   <body>
+    <div id="word-display" class="word-container"></div>
     <div class="container">
-      <div id="word-display"></div>
-
-      <input
-        type="text"
-        id="input-field"
-        placeholder="Start typing..."
-        autofocus
-        autocomplete="off"
-      />
-
+        
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="input-field"
+          placeholder="Start typing..."
+          autofocus
+          autocomplete="off"
+        />
+        <button id="Restart" class="restart-button">Restart</button>
+      </div>
       <div id="score-board">Score: <span id="score">0</span></div>
       <div class="message">Type the word exactly as shown!</div>
+      <button id="Settings" class="settings-button">Settings</button>
+      <div id="settingsModal" class="settings-modal">
+        <h2>Settings Screen</h2>
+        <div class="settings-content">
+          <span class="close">&times;</span>
+          <p>• Highlight Word: <span id="settings-highlight-current"></span></p>
+          <p>• Disable Score: <span id="settings-disable-score"></span></p>
+          <p>• Restart Score: <span id="settings-reset-score"></span></p>
+          <p>• Skip Repeats: <span id="settings-skip-repeats"></span></p>
+          <p>• Store Skip Repeats: <span id="settings-store-skips"></span></p>
+          <p>• Skip With Errors: <span id="settings-end-incomplete"></span></p>
+          <p>• Word Limit: </p>
+          <p>• Error Restart: </p>
+        </div>
+      </div>
     </div>
 
-    <script src="app.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>
