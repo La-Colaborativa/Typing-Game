@@ -118,7 +118,6 @@ Quick and concise way of starting the application up on your end.
 
 See the [open issues](https://github.com/La-Colaborativa/Typing-Game/issues) for a full list of known issues and proposed features.
 
-
 <!-- CONTACT -->
 ## Contact
 
