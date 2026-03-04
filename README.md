@@ -94,7 +94,7 @@ Quick and concise way of starting the application up on your end.
 ### Contributors
 
 <a href="https://github.com/La-Colaborativa/Typing-Game/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=La-Colaborativa/Typing-Game" alt="contrib.rocks image" />
+  <img src="https://contrib.rocks/image?repo=La-Colaborativa/Typing-Game"/>
 </a>
 
 
