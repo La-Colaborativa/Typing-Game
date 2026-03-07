@@ -1,122 +1,399 @@
 /* CSS: The Styling */
+
+/* 
+** This was by far the worst part in doing all of this. Youtube, Google, and ChatGPT are holding this
+** thing like it's made from bubble gum and scotch tape. If some things don't make sense or are
+** redundant that is why. Sorry. I tried. 😔
+*/
+
+/* ---------- Main Content ---------- */
+:root {
+  --bg: #2c3e50;
+  --panel: #34495e;
+  --panel-2: rgba(255, 255, 255, 0.06);
+  --panel-3: #fff;
+
+  --text: #ecf0f1;
+  --muted: #bdc3c7;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  --radius: 14px;
+
+  --maxw: 1100px;
+  --gap: clamp(14px, 2.2vh, 22px);
+  --pad: clamp(14px, 2.5vw, 22px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #2c3e50;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  height: 100%;
+}
+
+body {
   margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(1200px 700px at 30% 10%, #3b5873 0%, var(--bg) 55%);
+  color: var(--text);
 }
 
-.container {
-  background-color: #34495e;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+.layout { /* layout for 3-row items */
+  min-height: 10svh;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: var(--gap);
+  padding: var(--gap);
+  justify-items: center;
+  align-items: start;
+}
+
+.panel { /* Shared panel styling */
+  width: min(var(--maxw), 92vw);
+  background: linear-gradient(180deg, var(--panel) 0%, rgba(52, 73, 94, 0.92) 100%);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--pad);
+  border: 4px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Top: word display ---------- */
+.word-panel{
+  min-height: 0;
+  grid-row: 1;
+}
+.game-panel {
+  min-height: 0;
+  grid-row: 2;
+}
+
+.word-display {
+  max-height: 180px;
+  height: clamp(160px, 32vh, 360px);
+  display: grid;
+  place-items: center;
   text-align: center;
-  width: 80%;
-  max-width: 600px;
-  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-/* The word to type */
-#word-display {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  letter-spacing: 2px;
-  user-select: none; /* Prevents highlighting the text */
-}
+#word-display { /* Text to type */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 
-/* Individual character styling for feedback */
-.correct {
-  color: #2ecc71; /* Green */
-}
+  font-size: clamp(1.5rem, 10vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.15;
 
-.incorrect {
-  color: #e74c3c; /* Red */
-  text-decoration: underline;
-}
-
-/* The input box (hidden but active) */
-#input-field {
-  width: 50%;
-  padding: 10px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  text-align: center;
-  opacity: 0.5; /* Keeping it visible so you see cursor, but faint */
-}
-
-#score-board {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  color: #ecf0f1;
-}
-.hidden {
-  display: none;
-}
-
-.message {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #bdc3c7;
+  white-space: pre-wrap;
   user-select: none;
 }
 
-.button {
-  max-width : 80px;
-  min-width: 80px;
-  display: block;
-  margin-left: auto;
-  position: absolute;
-  right: 15px;
-  width: auto;
+.word { /* Each word moves as one to next line */
+  display: inline-flex;
+  white-space: nowrap;
 }
 
-/* Modal background overlay */
-.settings-modal {
-  font-size: 0.9rem;
-  display: none; /* Hide content */
-  position: fixed;
-  z-index: 10000; /* Make sure it takes priority over others */
-  left: 0;
-  top: 0;
+/* ---------- Middle: input display ---------- */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+#input-field {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.450); /* When the modal is focused */
-  overflow: auto; /* Scrolling in case we add more options */
+  padding: 12px 14px;
+  font-size: 1.05rem;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  outline: none;
   text-align: center;
+  background: var(--panel-2);
+  color: var(--text);
 }
 
-/* Modal content */
+#input-field::placeholder {
+  color: rgba(236, 240, 241, 0.55);
+}
+
+#input-field:focus {
+  border-color: rgba(39, 185, 230, 0.55);
+  box-shadow: 0 0 0 4px rgba(39, 185, 230, 0.15);
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.score {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.message {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  user-select: none;
+  align-self: center;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  border: 2px solid rgba(255, 255, 255, 0.10);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-restart {
+  background: rgba(39, 185, 230, 0.22);
+  border: 2px solid rgba(39, 185, 230, 0.35);
+}
+
+.btn-settings {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.btn-apply{
+  border: 3px solid rgba(255, 255, 255, 0.16);
+  padding: 3px 7px;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: #2ecc71;
+}
+
+input[type="checkbox"] {
+  /* Default styles for the unchecked state */
+  background-color: #eee;
+}
+
+#input-store-skips-value{
+  width: 80px;
+  background: rgba(53, 53, 53, 0.96);
+  color: white;
+  border: 3px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 4px;
+}
+
+/* ---------- Bottom: keyboard ---------- */
+.keyboard {
+  width: min(980px, 92vw);
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-auto-rows: clamp(42px, 6vh, 56px);
+  gap: clamp(2px, 0.6vh, 4px);
+  padding: clamp(8px, 1.2vh, 12px);
+  background: #111;
+  border-radius: 14px;
+  grid-row: 3;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.key{
+  min-width: 1px;
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr 1fr; /* top text bottom text */
+  align-items: center;
+  padding: 6px 8px;
+  border: 2px solid #3b3b3b;;
+  border-radius: 5px;
+  background: #2a2a2a;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.key-top {
+  align-self: start;
+  font-size: clamp(0.5rem, 1vw, 0.8rem);
+}
+
+.key-bottom {
+  align-self: end;
+  font-size: clamp(0.5rem, 1vw, 0.8rem);
+  
+  -weight: 600;
+}
+
+/* width modifiers */
+.key--center {grid-template-rows: 1fr 1fr 1fr;}
+.key--hover {
+  background-color: #397b8f;
+  border: 2px solid #2e6272;
+  color: #ffffff;
+}
+/* detecting the keys for hover interaction */
+/* ------------------- Row 1 ------------------- */
+.key[data-key="`"] { grid-row: 1; grid-column: 1; }
+.key[data-key="1"] { grid-row: 1; grid-column: 2; }
+.key[data-key="2"] { grid-row: 1; grid-column: 3; }
+.key[data-key="3"] { grid-row: 1; grid-column: 4; }
+.key[data-key="4"] { grid-row: 1; grid-column: 5; }
+.key[data-key="5"] { grid-row: 1; grid-column: 6; }
+.key[data-key="6"] { grid-row: 1; grid-column: 7; }
+.key[data-key="7"] { grid-row: 1; grid-column: 8; }
+.key[data-key="8"] { grid-row: 1; grid-column: 9; }
+.key[data-key="9"] { grid-row: 1; grid-column: 10; }
+.key[data-key="0"] { grid-row: 1; grid-column: 11; }
+.key[data-key="-"] { grid-row: 1; grid-column: 12; }
+.key[data-key="="] { grid-row: 1; grid-column: 13; }
+.key[data-key="backspace"] { grid-row: 1; grid-column: 14/ span 2; }
+/* ------------------- Row 2 ------------------- */
+.key[data-key="tab"] { grid-row: 2; grid-column: 1 / span 2;}
+.key[data-key="Q"] { grid-row: 2; grid-column: 3; }
+.key[data-key="W"] { grid-row: 2; grid-column: 4; }
+.key[data-key="E"] { grid-row: 2; grid-column: 5; }
+.key[data-key="R"] { grid-row: 2; grid-column: 6; }
+.key[data-key="T"] { grid-row: 2; grid-column: 7; }
+.key[data-key="Y"] { grid-row: 2; grid-column: 8; }
+.key[data-key="U"] { grid-row: 2; grid-column: 9; }
+.key[data-key="I"] { grid-row: 2; grid-column: 10; }
+.key[data-key="O"] { grid-row: 2; grid-column: 11; }
+.key[data-key="P"] { grid-row: 2; grid-column: 12; }
+.key[data-key="["] { grid-row: 2; grid-column: 13; }
+.key[data-key="]"] { grid-row: 2; grid-column: 14; }
+.key[data-key="|"] { grid-row: 2; grid-column: 15; }
+/* ------------------- Row 3 ------------------- */
+.key[data-key="caps"] { grid-row: 3; grid-column: 1 / span 2;}
+.key[data-key="A"] { grid-row: 3; grid-column: 3; }
+.key[data-key="S"] { grid-row: 3; grid-column: 4; }
+.key[data-key="D"] { grid-row: 3; grid-column: 5; }
+.key[data-key="F"] { grid-row: 3; grid-column: 6; }
+.key[data-key="G"] { grid-row: 3; grid-column: 7; }
+.key[data-key="H"] { grid-row: 3; grid-column: 8; }
+.key[data-key="J"] { grid-row: 3; grid-column: 9; }
+.key[data-key="K"] { grid-row: 3; grid-column: 10; }
+.key[data-key="L"] { grid-row: 3; grid-column: 11; }
+.key[data-key=";"] { grid-row: 3; grid-column: 12; }
+.key[data-key="'"] { grid-row: 3; grid-column: 13; }
+.key[data-key="enter"] { grid-row: 3; grid-column: 14 / span 2; }
+/* ------------------- Row 4 ------------------- */
+.key[data-key="shift"] { grid-row: 4; grid-column: 1 / span 3; }
+.key[data-key="Z"] { grid-row: 4; grid-column: 4; }
+.key[data-key="X"] { grid-row: 4; grid-column: 5; }
+.key[data-key="C"] { grid-row: 4; grid-column: 6; }
+.key[data-key="V"] { grid-row: 4; grid-column: 7; }
+.key[data-key="B"] { grid-row: 4; grid-column: 8; }
+.key[data-key="N"] { grid-row: 4; grid-column: 9; }
+.key[data-key="M"] { grid-row: 4; grid-column: 10; }
+.key[data-key=","] { grid-row: 4; grid-column: 11; }
+.key[data-key="."] { grid-row: 4; grid-column: 12; }
+.key[data-key="/"] { grid-row: 4; grid-column: 13; }
+.key[data-key="shift-1"] { grid-row: 4; grid-column: 14/ span 2; }
+/* ------------------- Row 5 ------------------- */
+.key[data-key="ctrl"] { grid-row: 5; grid-column: 1; }
+.key[data-key="alt"] { grid-row: 5; grid-column: 2; }
+.key[data-key="cmd"] { grid-row: 5; grid-column: 3 / span 2; }
+.key[data-key="space"] { grid-row: 5; grid-column: 5 / span 7; }
+.key[data-key="cmd-1"] { grid-row: 5; grid-column: 12 / span 2; }
+.key[data-key="alt-1"] { grid-row: 5; grid-column: 14; }
+.key[data-key="ctrl-1"] { grid-row: 5; grid-column: 15; }
+
+/* ---------- Word Display colors ---------- */
+.correct {
+  color: #2ecc71;
+}
+.incorrect {
+  color: #e74c3c;
+  text-decoration: underline;
+}
+.highlight {
+  color: #27b9e6;
+  text-decoration: underline;
+}
+.hidden {
+  color: #ffffff00
+}
+
+/* ---------- Settings Modal ---------- */
+.settings-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 24px;
+  font-size: 1.05rem;
+}
+
 .settings-content {
-  background-color: rgba(67, 67, 67, 0.67);
-  margin: 5% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 2px solid rgba(200, 200, 200, 0.3);
-  width: 80%; /* Could be responsive */
-  max-width: 500px;
-  text-align: left;
-  /*text-decoration: underline;*/
+  width: min(520px, 92vw);
+  margin: 6vh auto 0;
+  background: rgba(67, 67, 67, 0.96);
+  border: 3px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.settings-title {
+  margin: 0 0 10px;
+}
+
+.settings-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text);
 }
 
 .close {
-  color: #aaa;
   float: right;
+  border: 0;
+  background: transparent;
+  color: #aaa;
   font-size: 28px;
-  font-weight: bold;
   cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
+.close:hover {
   color: #e74c3c;
-  text-decoration: none;
-  cursor: pointer;
+}
+
+/* ---------- Smaller Window Size (Adjust) ---------- */
+@media (max-width: 560px) {
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .btn { /* centers it basically */
+    width: 100%;
+  }
+
+  .meta-row {
+    justify-content: center;
+  }
+
+  .key{ /* keeps text in-line so it doesn't float into the other keys */
+    padding: 6px 6px;
+  }
 }
