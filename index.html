@@ -112,8 +112,14 @@
         </div>
       </section>
       
-      <!-- BOTTOM: keyboard image -->
-      <div class="keyboard" role="group" aria-label="On screen keyboard">
+      <!-- BOTTOM: keyboard & hands -->
+      <div class="keyboard-stage">
+        <div class="hand-panel hand-panel--left">
+          <img id="left-hand-image" src="./images/hands/left-idle.png" alt="Left hand guide" />
+        </div>
+
+        <div class="keyboard" role="group" aria-label="On screen keyboard">
+          <!-- your existing keyboard buttons stay exactly here -->
           <button class="key" data-key="`">
             <span class="key-top">~</span>
             <span class="key-bottom">`</span>
@@ -249,7 +255,7 @@
             <span class="key-bottom">]</span>
           </button>
 
-          <button class="key" data-key="|">
+          <button class="key" data-key="\\">
             <span class="key-top">|</span>
             <span class="key-bottom">\</span>
           </button>
@@ -369,7 +375,7 @@
             <span class="key-bottom">.</span>
           </button>
 
-          <button class="key key--center" data-key="?">
+          <button class="key key--center" data-key="/">
             <span class="key-top">?</span>
             <span class="key-bottom">/</span>
           </button>
@@ -418,8 +424,12 @@
             <span class="key-top"></span>
             <span class="key-bottom">ctrl</span>
           </button>
-
         </div>
+
+        <div class="hand-panel hand-panel--right">
+          <img id="right-hand-image" src="./images/hands/right-idle.png" alt="Right hand guide" />
+        </div>
+      </div>
       </section>
     </main>
 

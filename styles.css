@@ -204,8 +204,32 @@ input[type="checkbox"] {
 }
 
 /* ---------- Bottom: keyboard ---------- */
+.keyboard-stage {
+  width: min(1300px, 98vw);
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) minmax(0, 1fr) minmax(140px, 220px);
+  gap: 16px;
+  align-items: center;
+  grid-row: 3;
+}
+
+.hand-panel {
+  display: grid;
+  place-items: center;
+}
+
+.hand-panel img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.28));
+}
+
 .keyboard {
-  width: min(980px, 92vw);
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   grid-auto-rows: clamp(42px, 6vh, 56px);
@@ -213,9 +237,18 @@ input[type="checkbox"] {
   padding: clamp(8px, 1.2vh, 12px);
   background: #111;
   border-radius: 14px;
-  grid-row: 3;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+@media (max-width: 1050px) { /* Make hands disappear if window too small */
+  .keyboard-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .hand-panel {
+    display: none;
+  }
 }
 
 .key{
@@ -252,6 +285,7 @@ input[type="checkbox"] {
   border: 2px solid #2e6272;
   color: #ffffff;
 }
+
 /* detecting the keys for hover interaction */
 /* ------------------- Row 1 ------------------- */
 .key[data-key="`"] { grid-row: 1; grid-column: 1; }

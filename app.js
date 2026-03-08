@@ -90,6 +90,166 @@ const scoreElement = document.getElementById("score");
 var modal = document.getElementById("settingsModal");
 var settingsButton = document.getElementById("Settings");
 var restartButton = document.getElementById("Restart");
+const leftHandImage = document.getElementById("left-hand-image");
+const rightHandImage = document.getElementById("right-hand-image");
+
+const handImages = {
+  left: {
+    idle: "./images/hands/left-idle.png",
+    pinky: "./images/hands/left-pinky.png",
+    ring: "./images/hands/left-ring.png",
+    middle: "./images/hands/left-middle.png",
+    index: "./images/hands/left-index.png",
+    thumb: "./images/hands/left-thumb.png"
+  },
+  right: {
+    idle: "./images/hands/right-idle.png",
+    pinky: "./images/hands/right-pinky.png",
+    ring: "./images/hands/right-ring.png",
+    middle: "./images/hands/right-middle.png",
+    index: "./images/hands/right-index.png",
+    thumb: "./images/hands/right-thumb.png"
+  }
+};
+
+const keyFingerMap = {
+  "`": { left: "pinky" },
+  "1": { left: "pinky" },
+  "2": { left: "ring" },
+  "3": { left: "middle" },
+  "4": { left: "index" },
+  "5": { left: "index" },
+
+  "6": { right: "index" },
+  "7": { right: "index" },
+  "8": { right: "middle" },
+  "9": { right: "ring" },
+  "0": { right: "pinky" },
+  "-": { right: "pinky" },
+  "=": { right: "pinky" },
+
+  "Q": { left: "pinky" },
+  "W": { left: "ring" },
+  "E": { left: "middle" },
+  "R": { left: "index" },
+  "T": { left: "index" },
+
+  "Y": { right: "index" },
+  "U": { right: "index" },
+  "I": { right: "middle" },
+  "O": { right: "ring" },
+  "P": { right: "pinky" },
+  "[": { right: "pinky" },
+  "]": { right: "pinky" },
+  "\\": { right: "pinky" },
+
+  "A": { left: "pinky" },
+  "S": { left: "ring" },
+  "D": { left: "middle" },
+  "F": { left: "index" },
+  "G": { left: "index" },
+
+  "H": { right: "index" },
+  "J": { right: "index" },
+  "K": { right: "middle" },
+  "L": { right: "ring" },
+  ";": { right: "pinky" },
+  "'": { right: "pinky" },
+
+  "Z": { left: "pinky" },
+  "X": { left: "ring" },
+  "C": { left: "middle" },
+  "V": { left: "index" },
+  "B": { left: "index" },
+
+  "N": { right: "index" },
+  "M": { right: "index" },
+  ",": { right: "middle" },
+  ".": { right: "ring" },
+  "/": { right: "pinky" },
+
+  "SPACE": { left: "thumb", right: "thumb" }
+};
+
+function setHandImages(leftFinger = "idle", rightFinger = "idle") {
+  leftHandImage.src = handImages.left[leftFinger] || handImages.left.idle;
+  rightHandImage.src = handImages.right[rightFinger] || handImages.right.idle;
+
+  leftHandImage.alt = leftFinger === "idle"
+    ? "Left hand guide"
+    : `Left hand ${leftFinger} highlighted`;
+
+  rightHandImage.alt = rightFinger === "idle"
+    ? "Right hand guide"
+    : `Right hand ${rightFinger} highlighted`;
+}
+
+function getFingerHintsForChar(char) {
+  const result = {
+    left: new Set(),
+    right: new Set()
+  };
+
+  if (!char) return result;
+
+  if (char === " ") {
+    result.left.add("thumb");
+    result.right.add("thumb");
+    return result;
+  }
+
+  let needsShift = false;
+  let baseKey = char;
+
+  if (char >= "A" && char <= "Z") {
+    needsShift = true;
+    baseKey = char;
+  } else if (shiftMap[char]) {
+    needsShift = true;
+    baseKey = shiftMap[char];
+  }
+
+  baseKey = baseKey.toUpperCase();
+
+  const fingerInfo = keyFingerMap[baseKey];
+  if (!fingerInfo) return result;
+
+  if (fingerInfo.left) result.left.add(fingerInfo.left);
+  if (fingerInfo.right) result.right.add(fingerInfo.right);
+
+  // If shift needed, use the opposite-hand pinky.
+  if (needsShift) {
+    if (fingerInfo.left) {
+      result.right.add("pinky");
+    } else if (fingerInfo.right) {
+      result.left.add("pinky");
+    }
+  }
+
+  return result;
+}
+
+function updateHandHints() {
+  if (!currentWord) {
+    setHandImages("idle", "idle");
+    return;
+  }
+
+  const currentCharIndex = inputElement.value.length;
+  const expectedChar = currentWord[currentCharIndex];
+
+  if (expectedChar === undefined) {
+    setHandImages("idle", "idle");
+    return;
+  }
+
+  const fingers = getFingerHintsForChar(expectedChar);
+
+  const leftFinger = [...fingers.left][0] || "idle";
+  const rightFinger = [...fingers.right][0] || "idle";
+
+  setHandImages(leftFinger, rightFinger);
+}
 
 let currentWord = null;
 let score = 0;
@@ -199,6 +359,7 @@ const shiftMap = {
 
 function updateKeyHover() {
   clearKeyHover();
+  updateHandHints();
 
   if (!currentWord) return;
 
@@ -212,18 +373,19 @@ function updateKeyHover() {
     return;
   }
 
-  if (expectedChar >= "A" && expectedChar <= "Z") { // Uppercase letter.
+  if (expectedChar >= "A" && expectedChar <= "Z") {
     hoverKey("shift");
     hoverKey(expectedChar);
     return;
   }
 
-  if (shiftMap[expectedChar]) { // Shift symbols (!, @, #, etc...).
+  if (shiftMap[expectedChar]) {
     hoverKey("shift");
     hoverKey(shiftMap[expectedChar]);
     return;
   }
-  hoverKey(expectedChar.toUpperCase()); // Normal lowercase / number / symbol.
+
+  hoverKey(expectedChar.toUpperCase());
 }
 
 function clearKeyHover() {

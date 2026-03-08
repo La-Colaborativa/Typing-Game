@@ -108,8 +108,6 @@ Thank you to Drake for the art used in this project. Reach out if you would like
 
 Ideas to be integrated. Concepts are added as the project continues.
 
-- [x] Dyanmic Keyboard
-    - [ ] Visual Hands (Swaps to button)
 - [ ] Additional Options:
     - [ ] WPM Tracker
 

@@ -2,6 +2,18 @@
 
 Record of all changelog data.
 
+# --- Changelog #6 ( 3/8/2026 | 12:54pm/24:54 EST | v0.3.0 ) --- #
+
+- Added Dynamic Hands:
+    * Visible hands that change their finger highlight based on key press required.
+    * Updated README file.
+- Added Additional Settings.
+    * Settings for week specific typing lessons.
+- Added More Strings:
+    * Added a few more words, phrases, and sentences.
+- Fixed Keyboard Bugs:
+    * Fixed some keys that would not show up properly being highlighted.
+
 # ! ---> Changelog #5 ( 3/6/2026 | 09:00pm/21:00 EST | v0.2.0 ) <--- ! #
 NOTE: Features discussed in previous changelogs are accurate, however some additional changes were not written down. This is all of the important/up-to-date compiled information here.
 

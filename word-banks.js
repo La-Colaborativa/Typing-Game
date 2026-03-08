@@ -103,7 +103,17 @@ const words = [
   "uranus",
   "mercury",
   "smallest",
-  "biggest"
+  "biggest",
+  "quick",
+  "horizon",
+  "catalyst",
+  "ember",
+  "velocity",
+  "nexus",
+  "radiant",
+  "echo",
+  "momentum",
+  "serenity"
 ];
 
 const phrases = [
@@ -128,6 +138,8 @@ const phrases = [
   "never mind",
   "beat around the bush",
   "barking up the wrong tree",
+  "Quick brown fox",
+  "Lazy dog naps",
   'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890 !@#$%^&*() `~ -_ =+ [{ ]} \\| ;: \'" ,< .> /?'
 ]
 
@@ -150,7 +162,9 @@ const sentences = [
   "If the freedom of speech is taken away then dumb and silent we may be led, like sheep to the slaughter.",
   "Do not pray for easy lives, my friends. Pray to be stronger men.",
   "The phone was broken, but he was sick of buying new ones. He grabbed his screwdriver and contemplated how to attack the problem. It was probably beyond his ability, but he was damn good with a screwdriver. After drinking three of them it wasn't fixed, but he didn't care anymore.",
-  "incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it."
+  //"incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it. incredibly long text that we might have to decrease the size of the font in order to fix the positioning of it.",
+  "A curious zebra zigzagged across the dusty road while bright vultures circled above.",
+  "My playful kitten chased buzzing fireflies through the shadowy garden at dusk."
 ]
 
 const week_1_curriculum = [
