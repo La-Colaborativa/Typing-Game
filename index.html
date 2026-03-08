@@ -115,9 +115,19 @@
       <!-- BOTTOM: keyboard & hands -->
       <div class="keyboard-stage">
         <div class="hand-panel hand-panel--left">
-          <img id="left-hand-image" src="./images/hands/left-idle.png" alt="Left hand guide" />
+          <div class="hand-stack">
+            <img
+              class="hand-base"
+              src="./images/hands/left-idle.png"
+              alt="Left hand guide"
+            />
+            <div
+              id="left-hand-overlays"
+              class="hand-overlays"
+              aria-hidden="true"
+            ></div>
+          </div>
         </div>
-
         <div class="keyboard" role="group" aria-label="On screen keyboard">
           <!-- your existing keyboard buttons stay exactly here -->
           <button class="key" data-key="`">
@@ -427,9 +437,19 @@
         </div>
 
         <div class="hand-panel hand-panel--right">
-          <img id="right-hand-image" src="./images/hands/right-idle.png" alt="Right hand guide" />
+          <div class="hand-stack">
+            <img
+              class="hand-base"
+              src="./images/hands/right-idle.png"
+              alt="Right hand guide"
+            />
+            <div
+              id="right-hand-overlays"
+              class="hand-overlays"
+              aria-hidden="true"
+            ></div>
+          </div>
         </div>
-      </div>
       </section>
     </main>
 

@@ -90,12 +90,11 @@ const scoreElement = document.getElementById("score");
 var modal = document.getElementById("settingsModal");
 var settingsButton = document.getElementById("Settings");
 var restartButton = document.getElementById("Restart");
-const leftHandImage = document.getElementById("left-hand-image");
-const rightHandImage = document.getElementById("right-hand-image");
+const leftHandOverlays = document.getElementById("left-hand-overlays");
+const rightHandOverlays = document.getElementById("right-hand-overlays");
 
 const handImages = {
   left: {
-    idle: "./images/hands/left-idle.png",
     pinky: "./images/hands/left-pinky.png",
     ring: "./images/hands/left-ring.png",
     middle: "./images/hands/left-middle.png",
@@ -103,7 +102,6 @@ const handImages = {
     thumb: "./images/hands/left-thumb.png"
   },
   right: {
-    idle: "./images/hands/right-idle.png",
     pinky: "./images/hands/right-pinky.png",
     ring: "./images/hands/right-ring.png",
     middle: "./images/hands/right-middle.png",
@@ -171,17 +169,26 @@ const keyFingerMap = {
   "SPACE": { left: "thumb", right: "thumb" }
 };
 
-function setHandImages(leftFinger = "idle", rightFinger = "idle") {
-  leftHandImage.src = handImages.left[leftFinger] || handImages.left.idle;
-  rightHandImage.src = handImages.right[rightFinger] || handImages.right.idle;
+function renderHandOverlays(container, side, fingers) {
+  container.innerHTML = "";
 
-  leftHandImage.alt = leftFinger === "idle"
-    ? "Left hand guide"
-    : `Left hand ${leftFinger} highlighted`;
+  fingers.forEach((finger) => {
+    const src = handImages[side][finger];
+    if (!src) return;
 
-  rightHandImage.alt = rightFinger === "idle"
-    ? "Right hand guide"
-    : `Right hand ${rightFinger} highlighted`;
+    const img = document.createElement("img");
+    img.className = "hand-overlay";
+    img.src = src;
+    img.alt = "";
+    img.setAttribute("aria-hidden", "true");
+
+    container.appendChild(img);
+  });
+}
+
+function setHandImages(leftFingers = [], rightFingers = []) {
+  renderHandOverlays(leftHandOverlays, "left", leftFingers);
+  renderHandOverlays(rightHandOverlays, "right", rightFingers);
 }
 
 function getFingerHintsForChar(char) {
@@ -217,13 +224,8 @@ function getFingerHintsForChar(char) {
   if (fingerInfo.left) result.left.add(fingerInfo.left);
   if (fingerInfo.right) result.right.add(fingerInfo.right);
 
-  // If shift needed, use the opposite-hand pinky.
   if (needsShift) {
-    if (fingerInfo.left) {
-      result.right.add("pinky");
-    } else if (fingerInfo.right) {
-      result.left.add("pinky");
-    }
+    result.left.add("pinky");
   }
 
   return result;
@@ -231,7 +233,7 @@ function getFingerHintsForChar(char) {
 
 function updateHandHints() {
   if (!currentWord) {
-    setHandImages("idle", "idle");
+    setHandImages([], []);
     return;
   }
 
@@ -239,32 +241,32 @@ function updateHandHints() {
   const expectedChar = currentWord[currentCharIndex];
 
   if (expectedChar === undefined) {
-    setHandImages("idle", "idle");
+    setHandImages([], []);
     return;
   }
 
   const fingers = getFingerHintsForChar(expectedChar);
 
-  const leftFinger = [...fingers.left][0] || "idle";
-  const rightFinger = [...fingers.right][0] || "idle";
-
-  setHandImages(leftFinger, rightFinger);
+  setHandImages(
+    [...fingers.left],
+    [...fingers.right]
+  );
 }
 
 let currentWord = null;
 let score = 0;
 
-var closeSpan = document.getElementsByClassName("close")[0]; // Get the element that closes the modal.
+var closeSpan = document.getElementsByClassName("close")[0];
 
-settingsButton.onclick = function() { // Open settings modal.
+settingsButton.onclick = function() {
   modal.style.display = "block";
 }
 
-closeSpan.onclick = function() { // Close settings modal.
+closeSpan.onclick = function() {
   modal.style.display = "none";
 }
 
-window.onclick = function(event) { // If clicking outside of modal, close modal.
+window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
@@ -399,7 +401,7 @@ function hoverKey(keyValue) {
 }
 
 // 4. Game Initializer
-inputElement.addEventListener("input", processInput);  // Moved outside so it doesn't keep creating new input listeners when restart is hit (overflow).
+inputElement.addEventListener("input", processInput);
 
 function init() {
   renderStoreSkips();
@@ -450,7 +452,7 @@ function showNewWord() {
   const parts = currentWord.split(" ");
 
   parts.forEach((word, wordIndex) => {
-    const wordSpan = document.createElement("span"); // Creates an individiual element per char.
+    const wordSpan = document.createElement("span");
     wordSpan.className = "word";
 
     word.split("").forEach((ch) => {
@@ -507,7 +509,7 @@ const expectedChar = currentWord[currentChar];
 
   let correctSoFar = true;
 
-  arrayQuote.forEach((characterSpan, index) => { // Loop through each character span in the displayed word.
+  arrayQuote.forEach((characterSpan, index) => {
     const character = arrayValue[index];
 
     // Character hasn't been typed yet.

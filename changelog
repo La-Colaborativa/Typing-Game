@@ -2,6 +2,12 @@
 
 Record of all changelog data.
 
+# --- Changelog #7 ( 3/8/2026 | 11:34am/11:34 EST | v0.3.1 ) --- #
+
+- Updated Dynamic Hands:
+    * Changed how they are displayed (only highlights overlay)
+- Fixed small bugs.
+
 # --- Changelog #6 ( 3/8/2026 | 12:54pm/24:54 EST | v0.3.0 ) --- #
 
 - Added Dynamic Hands:
