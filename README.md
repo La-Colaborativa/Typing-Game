@@ -91,7 +91,12 @@ Quick and concise way of starting the application up on your end.
 4. Push to the Branch
 5. Open a Pull Request
 
-### Contributors
+## Contributors
+
+### Art Contributor
+Thank you to Drake for the art used in this project. Reach out if you would like to make commissions. He is in the <a href="#contact">Contact</a> section. 
+
+### GitHub Contributors
 
 <a href="https://github.com/La-Colaborativa/Typing-Game/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=La-Colaborativa/Typing-Game"/>
@@ -101,27 +106,19 @@ Quick and concise way of starting the application up on your end.
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Reformat README
-- [ ] Image Reference
-- [ ] Auto-scrolling
+Ideas to be integrated. Concepts are added as the project continues.
+
 - [ ] Additional Options:
-    - [x] Highlight Word
-    - [x] Disable Score
-    - [x] Restart Score
-    - [x] Skip Repeats
-    - [x] Store Skip Repeats
-    - [ ] Word Limit
-    - [ ] Words, Phrases, & Sentences Checkbox
-    - [ ] Error Restart
-    - [ ] Skip Spaces
+    - [ ] WPM Tracker
 
 See the [open issues](https://github.com/La-Colaborativa/Typing-Game/issues) for a full list of known issues and proposed features.
 
 <!-- CONTACT -->
 ## Contact
 
-Modesto Rodriguez - modestomazzoni@gmail.com
+- Modesto Rodriguez - modestomazzoni@gmail.com
+- Nelson
+- Drake Henry - (aathiallll@gmail.com)
 
 Project Link: [https://github.com/La-Colaborativa/Typing-Game/](https://github.com/La-Colaborativa/Typing-Game/)
 

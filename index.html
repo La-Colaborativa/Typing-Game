@@ -1,3 +1,5 @@
+<!-- HTML: The Structure -->
+ 
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,38 +8,450 @@
     <link rel="stylesheet" href="styles.css" />
     <title>Simple Typing Game</title>
   </head>
+
   <body>
-    <div id="word-display" class="word-container"></div>
-    <div class="container">
-        
-      <div class="input-wrap">
-        <input
-          type="text"
-          id="input-field"
-          placeholder="Start typing..."
-          autofocus
-          autocomplete="off"
-        />
-        <button id="Restart" class="restart-button">Restart</button>
-      </div>
-      <div id="score-board">Score: <span id="score">0</span></div>
-      <div class="message">Type the word exactly as shown!</div>
-      <button id="Settings" class="settings-button">Settings</button>
-      <div id="settingsModal" class="settings-modal">
-        <h2>Settings Screen</h2>
-        <div class="settings-content">
-          <span class="close">&times;</span>
-          <p>• Highlight Word: <span id="settings-highlight-current"></span></p>
-          <p>• Disable Score: <span id="settings-disable-score"></span></p>
-          <p>• Restart Score: <span id="settings-reset-score"></span></p>
-          <p>• Skip Repeats: <span id="settings-skip-repeats"></span></p>
-          <p>• Store Skip Repeats: <span id="settings-store-skips"></span></p>
-          <p>• Skip With Errors: <span id="settings-end-incomplete"></span></p>
-          <p>• Word Limit: </p>
-          <p>• Error Restart: </p>
+    <main class="layout">
+      <!-- TOP: Word Display -->
+      <section class="panel word-panel" aria-label="Words to type">
+        <div id="word-display" class="word-display"></div>
+      </section>
+
+      <!-- MIDDLE: input / score / settings -->
+      <section class="panel game-panel" aria-label="Typing controls">
+        <div class="input-row">
+          <input
+            type="text"
+            id="input-field"
+            placeholder="Start typing..."
+            autocomplete="off"
+            inputmode="text"
+            autofocus
+          />
+          <button id="Restart" class="btn btn-restart" type="button">Restart</button>
         </div>
-      </div>
-    </div>
+
+        <div class="meta-row">
+          <div id="score-board" class="score">
+            Score: <span id="score">0</span>
+          </div>
+          <button id="Settings" class="btn settings" type="button">Settings</button>
+        </div>
+
+        <p class="message">Type the word exactly as shown!</p>
+
+        <!-- Settings Modal !-->
+        <div id="settingsModal" class="settings-modal" role="dialog" aria-modal="true" aria-hidden="Modify Settings">
+          <div class="settings-content">
+            <button class="close" type="button" aria-label="Close settings">&times;</button>
+            <h2 class="settings-title">Settings</h2>
+            <ul class="settings-list">
+
+              <li>Highlight Word:
+                <input type="checkbox" id="checkbox-settings-highlight">
+                <label for="checkbox-settings-highlight"></label>
+              <li>Disable Score:
+                <input type="checkbox" id="checkbox-settings-disable-score">
+                <label for="checkbox-settings-disable-score"></label>
+              
+              <li>Restart Score:
+                <input type="checkbox" id="checkbox-settings-reset-score">
+                <label for="checkbox-settings-reset-score"></label>
+
+              <li>Skip Repeats:
+                <input type="checkbox" id="checkbox-settings-skip-repeats">
+                <label for="checkbox-settings-skip-repeats"></label>
+
+              <li>Store Skip Repeats: <span id="settings-store-skips"></span>
+                <form id="store-skips-form">
+                  <label for="input-store-skips-value">→ Change Skips: 
+                  <input
+                    type="number"
+                    id="input-store-skips-value"
+                    min="1"
+                    max="50"
+                    step="1"
+                  />
+                  <button type="submit" class="btn btn-apply">Apply</button>
+                </form>
+
+              <li>Skip With Errors:
+                <input type="checkbox" id="checkbox-settings-end-incomplete">
+                <label for="checkbox-settings-end-incomplete"></label>
+              
+              <li>Restart Resets Repeats:
+                <input type="checkbox" id="checkbox-settings-reset-repeats">
+                <label for="checkbox-settings-reset-repeats"></label>
+              
+              <li>Disappearing Text:
+                <input type="checkbox" id="checkbox-settings-disappear-text">
+                <label for="checkbox-settings-disappear-text"></label></ul>
+            <br>
+            <h2 class="settings-title">Course Weeks</h2>
+            <ul class="settings-list">
+              <hr>
+              <li>Week 1:
+                <input type="checkbox" id="checkbox-settings-week-1">
+                <label for="checkbox-settings-week-1"></label>
+              <li>Week 2:
+                <input type="checkbox" id="checkbox-settings-week-2">
+                <label for="checkbox-settings-week-2"></label>
+              <li>Week 3:
+                <input type="checkbox" id="checkbox-settings-week-3">
+                <label for="checkbox-settings-week-3"></label>
+              <li>Week 4:
+                <input type="checkbox" id="checkbox-settings-week-4">
+                <label for="checkbox-settings-week-4"></label>
+              <li>Week 5:
+                <input type="checkbox" id="checkbox-settings-week-5">
+                <label for="checkbox-settings-week-5"></label>
+              <li>Week 6:
+                <input type="checkbox" id="checkbox-settings-week-6">
+                <label for="checkbox-settings-week-6"></label>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <!-- BOTTOM: keyboard & hands -->
+      <div class="keyboard-stage">
+        <div class="hand-panel hand-panel--left">
+          <div class="hand-stack">
+            <img
+              class="hand-base"
+              src="./images/hands/left-idle.png"
+              alt="Left hand guide"
+            />
+            <div
+              id="left-hand-overlays"
+              class="hand-overlays"
+              aria-hidden="true"
+            ></div>
+          </div>
+        </div>
+        <div class="keyboard" role="group" aria-label="On screen keyboard">
+          <!-- your existing keyboard buttons stay exactly here -->
+          <button class="key" data-key="`">
+            <span class="key-top">~</span>
+            <span class="key-bottom">`</span>
+          </button>
+
+          <button class="key" data-key="1">
+            <span class="key-top">!</span>
+            <span class="key-bottom">1</span>
+          </button>
+
+          <button class="key" data-key="2">
+            <span class="key-top">@</span>
+            <span class="key-bottom">2</span>
+          </button>
+
+          <button class="key" data-key="3">
+            <span class="key-top">#</span>
+            <span class="key-bottom">3</span>
+          </button>
+
+          <button class="key" data-key="4">
+            <span class="key-top">$</span>
+            <span class="key-bottom">4</span>
+          </button>
+
+          <button class="key" data-key="5">
+            <span class="key-top">%</span>
+            <span class="key-bottom">5</span>
+          </button>
+
+          <button class="key" data-key="6">
+            <span class="key-top">^</span>
+            <span class="key-bottom">6</span>
+          </button>
+
+          <button class="key" data-key="7">
+            <span class="key-top">&</span>
+            <span class="key-bottom">7</span>
+          </button>
+
+          <button class="key" data-key="8">
+            <span class="key-top">*</span>
+            <span class="key-bottom">8</span>
+          </button>
+          
+          <button class="key" data-key="9">
+            <span class="key-top">(</span>
+            <span class="key-bottom">9</span>
+          </button>
+
+          <button class="key" data-key="0">
+            <span class="key-top">)</span>
+            <span class="key-bottom">0</span>
+          </button>
+          
+          <button class="key" data-key="-">
+            <span class="key-top">_</span>
+            <span class="key-bottom">-</span>
+          </button>
+
+          <button class="key" data-key="=">
+            <span class="key-top">+</span>
+            <span class="key-bottom">=</span>
+          </button>
+          
+          <button class="key" data-key="backspace">
+            <span class="key-top">Backspace</span>
+            <span class="key-bottom">⌫</span>
+          </button>
+
+          <button class="key" data-key="tab">
+            <span class="key-top">Tab</span>
+            <span class="key-bottom">↹</span>
+          </button>
+
+          <button class="key key--center" data-key="Q">
+            <span class="key-top"></span>
+            <span class="key-bottom">Q</span>
+          </button>
+
+          <button class="key key--center" data-key="W">
+            <span class="key-top"></span>
+            <span class="key-bottom">W</span>
+          </button>
+
+          <button class="key key--center" data-key="E">
+            <span class="key-top"></span>
+            <span class="key-bottom">E</span>
+          </button>
+
+          <button class="key key--center" data-key="R">
+            <span class="key-top"></span>
+            <span class="key-bottom">R</span>
+          </button>
+
+          <button class="key key--center" data-key="T">
+            <span class="key-top"></span>
+            <span class="key-bottom">T</span>
+          </button>
+
+          <button class="key key--center" data-key="Y">
+            <span class="key-top"></span>
+            <span class="key-bottom">Y</span>
+          </button>
+
+          <button class="key key--center" data-key="U">
+            <span class="key-top"></span>
+            <span class="key-bottom">U</span>
+          </button>
+
+          <button class="key key--center" data-key="I">
+            <span class="key-top"></span>
+            <span class="key-bottom">I</span>
+          </button>
+
+          <button class="key key--center" data-key="O">
+            <span class="key-top"></span>
+            <span class="key-bottom">O</span>
+          </button>
+
+          <button class="key key--center" data-key="P">
+            <span class="key-top"></span>
+            <span class="key-bottom">P</span>
+          </button>
+
+          <button class="key" data-key="[">
+            <span class="key-top">{</span>
+            <span class="key-bottom">[</span>
+          </button>
+
+          <button class="key" data-key="]">
+            <span class="key-top">}</span>
+            <span class="key-bottom">]</span>
+          </button>
+
+          <button class="key" data-key="\\">
+            <span class="key-top">|</span>
+            <span class="key-bottom">\</span>
+          </button>
+
+          <button class="key" data-key="caps">
+            <span class="key-top">caps</span>
+            <span class="key-bottom">⇪</span>
+          </button>
+
+          <button class="key key--center" data-key="A">
+            <span class="key-top"></span>
+            <span class="key-bottom">A</span>
+          </button>
+
+          <button class="key key--center" data-key="S">
+            <span class="key-top"></span>
+            <span class="key-bottom">S</span>
+          </button>
+
+          <button class="key key--center" data-key="D">
+            <span class="key-top"></span>
+            <span class="key-bottom">D</span>
+          </button>
+
+          <button class="key key--center" data-key="F">
+            <span class="key-top"></span>
+            <span class="key-bottom">F</span>
+          </button>
+
+          <button class="key key--center" data-key="G">
+            <span class="key-top"></span>
+            <span class="key-bottom">G</span>
+          </button>
+
+          <button class="key key--center" data-key="H">
+            <span class="key-top"></span>
+            <span class="key-bottom">H</span>
+          </button>
+
+          <button class="key key--center" data-key="J">
+            <span class="key-top"></span>
+            <span class="key-bottom">J</span>
+          </button>
+
+          <button class="key key--center" data-key="K">
+            <span class="key-top"></span>
+            <span class="key-bottom">K</span>
+          </button>
+
+          <button class="key key--center" data-key="L">
+            <span class="key-top"></span>
+            <span class="key-bottom">L</span>
+          </button>
+
+          <button class="key" data-key=";">
+            <span class="key-top">:</span>
+            <span class="key-bottom">;</span>
+          </button>
+
+          <button class="key" data-key="'">
+            <span class="key-top">"</span>
+            <span class="key-bottom">'</span>
+          </button>
+
+          <button class="key" data-key="shift">
+            <span class="key-top">Shift</span>
+            <span class="key-bottom">⇧</span>
+          </button>
+
+          <button class="key" data-key="shift">
+            <span class="key-top">Shift</span>
+            <span class="key-bottom">⇧</span>
+          </button>
+
+          <button class="key key--center" data-key="Z">
+            <span class="key-top"></span>
+            <span class="key-bottom">Z</span>
+          </button>
+
+          <button class="key key--center" data-key="X">
+            <span class="key-top"></span>
+            <span class="key-bottom">X</span>
+          </button>
+
+          <button class="key key--center" data-key="C">
+            <span class="key-top"></span>
+            <span class="key-bottom">C</span>
+          </button>
+
+          <button class="key key--center" data-key="V">
+            <span class="key-top"></span>
+            <span class="key-bottom">V</span>
+          </button>
+
+          <button class="key key--center" data-key="B">
+            <span class="key-top"></span>
+            <span class="key-bottom">B</span>
+          </button>
+
+          <button class="key key--center" data-key="N">
+            <span class="key-top"></span>
+            <span class="key-bottom">N</span>
+          </button>
+
+          <button class="key key--center" data-key="M">
+            <span class="key-top"></span>
+            <span class="key-bottom">M</span>
+          </button>
+
+          <button class="key key--center" data-key=",">
+            <span class="key-top"><</span>
+            <span class="key-bottom">,</span>
+          </button>
+
+          <button class="key key--center" data-key=".">
+            <span class="key-top">></span>
+            <span class="key-bottom">.</span>
+          </button>
+
+          <button class="key key--center" data-key="/">
+            <span class="key-top">?</span>
+            <span class="key-bottom">/</span>
+          </button>
+
+          <button class="key" data-key="shift-1">
+            <span class="key-top">Shift</span>
+            <span class="key-bottom">⇧</span>
+          </button>
+
+          <button class="key key--center" data-key="enter">
+            <span class="key-top">Enter</span>
+            <span class="key-bottom">⏎</span>
+          </button>
+          <!-- Can set to "Space" if we want. Thought it looked better without. -->
+          <button class="key" data-key="space">
+            <span class="key-top"></span>
+            <span class="key-bottom"></span>
+          </button>
+
+          <button class="key" data-key="ctrl">
+            <span class="key-top"></span>
+            <span class="key-bottom">ctrl</span>
+          </button>
+
+          <button class="key" data-key="alt">
+            <span class="key-top"></span>
+            <span class="key-bottom">alt</span>
+          </button>
+
+          <button class="key" data-key="cmd">
+            <span class="key-top"></span>
+            <span class="key-bottom">cmd</span>
+          </button>
+          
+          <button class="key" data-key="cmd-1">
+            <span class="key-top"></span>
+            <span class="key-bottom">cmd</span>
+          </button>
+
+          <button class="key" data-key="alt-1">
+            <span class="key-top"></span>
+            <span class="key-bottom">alt</span>
+          </button>
+          
+          <button class="key" data-key="ctrl-1">
+            <span class="key-top"></span>
+            <span class="key-bottom">ctrl</span>
+          </button>
+        </div>
+
+        <div class="hand-panel hand-panel--right">
+          <div class="hand-stack">
+            <img
+              class="hand-base"
+              src="./images/hands/right-idle.png"
+              alt="Right hand guide"
+            />
+            <div
+              id="right-hand-overlays"
+              class="hand-overlays"
+              aria-hidden="true"
+            ></div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <script type="module" src="./app.js"></script>
   </body>
