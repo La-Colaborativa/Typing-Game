@@ -2,6 +2,30 @@
 
 Record of all changelog data.
 
+# --- Changelog #9 ( 3/17/2026 | 4:58pm/16:58 EST | v0.4.0 ) --- #
+- Modified Settings Modal:
+    * Renamed Custom Weeks to Study Weeks.
+    * Scroll-able area, allowing for more content to be placed.
+    * Reorganized settings checkboxes.
+    * Better organized Study Weeks section, dividing into words and random categories to activate.
+    * Resizes automatically and properly fits the screen.
+- Created settings_file.js:
+    * The home of default settings.
+- app.js Restructure:
+    * Vast amount of changes in how most of the code work.
+    * Broke down code into functions for easier maintainability.
+
+# --- Changelog #8 ( 3/8/2026 | 11:38am/11:38 EST | v0.3.2 ) --- #
+
+- Updated README
+    * Changed previous "window-screenshot" to a newer, updated version (with dynamic hands).
+
+# --- Changelog #7 ( 3/8/2026 | 11:34am/11:34 EST | v0.3.1 ) --- #
+
+- Updated Dynamic Hands:
+    * Changed how they are displayed (only highlights overlay)
+- Fixed small bugs.
+
 # --- Changelog #6 ( 3/8/2026 | 12:54pm/24:54 EST | v0.3.0 ) --- #
 
 - Added Dynamic Hands:

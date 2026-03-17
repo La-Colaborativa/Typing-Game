@@ -213,9 +213,29 @@ input[type="checkbox"] {
   grid-row: 3;
 }
 
-.hand-panel {
-  display: grid;
-  place-items: center;
+.hand-stack {
+  position: relative;
+  width: 100%;
+  max-width: 220px;
+}
+
+.hand-base,
+.hand-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.28));
+  opacity: 1;
+}
+
+.hand-overlays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .hand-panel img {
@@ -388,6 +408,10 @@ input[type="checkbox"] {
   border-radius: 14px;
   padding: 18px;
   box-shadow: var(--shadow);
+  overflow: auto;
+  height: 75%;
+  scrollbar-width: thin;
+  scrollbar-color: #b8b8b8 transparent; /* Make the bar transparent */
 }
 
 .settings-title {
