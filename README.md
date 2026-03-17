@@ -117,8 +117,8 @@ See the [open issues](https://github.com/La-Colaborativa/Typing-Game/issues) for
 ## Contact
 
 - Modesto Rodriguez - modestomazzoni@gmail.com
-- Nelson
-- Drake Henry - (aathiallll@gmail.com)
+- Nelson Montesinos - nelsonm@la-colaborativa.org
+- Drake Henry - aathiallll@gmail.com
 
 Project Link: [https://github.com/La-Colaborativa/Typing-Game/](https://github.com/La-Colaborativa/Typing-Game/)
 

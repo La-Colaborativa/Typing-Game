@@ -408,6 +408,10 @@ input[type="checkbox"] {
   border-radius: 14px;
   padding: 18px;
   box-shadow: var(--shadow);
+  overflow: auto;
+  height: 75%;
+  scrollbar-width: thin;
+  scrollbar-color: #b8b8b8 transparent; /* Make the bar transparent */
 }
 
 .settings-title {
