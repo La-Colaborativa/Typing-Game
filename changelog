@@ -2,6 +2,7 @@
 
 Record of all changelog data.
 
+<<<<<<< Updated upstream
 # --- Changelog #9 ( 3/17/2026 | 4:58pm/16:58 EST | v0.4.0 ) --- #
 - Modified Settings Modal:
     * Renamed Custom Weeks to Study Weeks.
@@ -49,6 +50,14 @@ NOTE: Features discussed in previous changelogs are accurate, however some addit
     * Displays what the user needs to input next.
     * Text remains big no matter the size.
     * Adjusts as needed for screen size.
+=======
+# ! ---> Changelog #5 ( 3/3/2026 | 00:00pm/00:00 EST | v0.2.0 ) <--- ! #
+NOTE: Features discussed in previous changelogs are accurate, however some additional changes were not written down. This is all of the important/up-to-date compiled information here.
+
+- Created dynamic keyboard:
+    * Displays what the user needs to input next.
+    * Needs help with fitting on screen with the other containers. For some reason it is off screen sometimes on different displays. Otherwise it scales well to window sizes.
+>>>>>>> Stashed changes
 - Revamped the CSS and HTML layout of the web-app.
     * Increased border of containers and buttons to make them stand out more.
     * Keyboard integration (look at bullet point above).
@@ -57,7 +66,10 @@ NOTE: Features discussed in previous changelogs are accurate, however some addit
     * Better text scaling for when the windows gets bigger or smaller.
     * Added Autoscrolling when typing.
     * Gradient background.
+<<<<<<< Updated upstream
     * Settings layout changed.
+=======
+>>>>>>> Stashed changes
 - Code Comments:
     * Added more comments in code.
     * Removed unnecessary ones.
@@ -71,7 +83,10 @@ NOTE: Features discussed in previous changelogs are accurate, however some addit
 
     * Created & reformatted README:
         a. README now has a nice looking display on GitHub with a bunch of details about the project.
+<<<<<<< Updated upstream
         b. New images for README content.
+=======
+>>>>>>> Stashed changes
     * Created changelog:
         a. Made a changelog file to track changes made.
         b. Contains proper time and date format.

@@ -24,7 +24,11 @@
         <div id="word-display" class="word-display"></div>
       </section>
 
+<<<<<<< Updated upstream
       <!-- MIDDLE: input / score / settings -->
+=======
+      <!-- MIDDLE: input / score / controls -->
+>>>>>>> Stashed changes
       <section class="panel game-panel" aria-label="Typing controls">
         <div class="input-row">
           <input
@@ -48,19 +52,34 @@
         <p class="message">Type the word exactly as shown!</p>
 
         <!-- Settings Modal !-->
+<<<<<<< Updated upstream
         <div id="settingsModal" class="settings-modal" role="dialog" aria-modal="true" aria-hidden="Modify Settings">
           <div class="settings-content">
             <button class="close" type="button" aria-label="Close settings">&times;</button>
             <h2 class="settings-title">Settings</h2><hr>
+=======
+        <div id="settingsModal" class="settings-modal" role="dialog" aria-modal="true" aria-hidden="true">
+          <div class="settings-content">
+            <button class="close" type="button" aria-label="Close settings">&times;</button>
+            <h2 class="settings-title">Settings</h2>
+>>>>>>> Stashed changes
             <ul class="settings-list">
 
               <li>Highlight Word:
                 <input type="checkbox" id="checkbox-settings-highlight">
                 <label for="checkbox-settings-highlight"></label>
+<<<<<<< Updated upstream
               <li>Disable Score:
                 <input type="checkbox" id="checkbox-settings-disable-score">
                 <label for="checkbox-settings-disable-score"></label>
               
+=======
+
+              <li>Disable Score:
+                <input type="checkbox" id="checkbox-settings-disable-score">
+                <label for="checkbox-settings-disable-score"></label>
+
+>>>>>>> Stashed changes
               <li>Restart Score:
                 <input type="checkbox" id="checkbox-settings-reset-score">
                 <label for="checkbox-settings-reset-score"></label>
@@ -78,6 +97,7 @@
                     min="1"
                     max=""
                     step="1"
+<<<<<<< Updated upstream
                   />
                   <button type="submit" class="btn btn-apply">Apply</button>
                 </form>
@@ -204,10 +224,26 @@
               </li>
             </ul>
           </hr>
+=======
+                  /> <!-- make a max limit ((length of word-bank words + phrases + sentences) - 1 )-->
+                  <button type="submit" class="btn btn-save">Save</button>
+                </form>
+              <li>Skip With Errors:
+                <input type="checkbox" id="checkbox-settings-end-incomplete">
+                <label for="checkbox-settings-end-incomplete"></label>
+              <li>Restart Resets Repeats:
+                <input type="checkbox" id="checkbox-settings-reset-repeats">
+                <label for="checkbox-settings-reset-repeats"></label>
+              <li>Disappearing Text:
+                <input type="checkbox" id="checkbox-settings-disappear-text">
+                <label for="checkbox-settings-disappear-text"></label>
+            </ul>
+>>>>>>> Stashed changes
           </div>
         </div>
       </section>
       
+<<<<<<< Updated upstream
       <!-- BOTTOM: keyboard & hands -->
       <div class="keyboard-stage">
         <div class="hand-panel hand-panel--left">
@@ -226,6 +262,10 @@
         </div>
         <div class="keyboard" role="group" aria-label="On screen keyboard">
           <!-- your existing keyboard buttons stay exactly here -->
+=======
+      <!-- BOTTOM: keyboard image -->
+      <div class="keyboard" role="group" aria-label="On screen keyboard">
+>>>>>>> Stashed changes
           <button class="key" data-key="`">
             <span class="key-top">~</span>
             <span class="key-bottom">`</span>
@@ -361,7 +401,11 @@
             <span class="key-bottom">]</span>
           </button>
 
+<<<<<<< Updated upstream
           <button class="key" data-key="\\">
+=======
+          <button class="key" data-key="|">
+>>>>>>> Stashed changes
             <span class="key-top">|</span>
             <span class="key-bottom">\</span>
           </button>
@@ -481,7 +525,11 @@
             <span class="key-bottom">.</span>
           </button>
 
+<<<<<<< Updated upstream
           <button class="key key--center" data-key="/">
+=======
+          <button class="key key--center" data-key="?">
+>>>>>>> Stashed changes
             <span class="key-top">?</span>
             <span class="key-bottom">/</span>
           </button>
@@ -530,6 +578,7 @@
             <span class="key-top"></span>
             <span class="key-bottom">ctrl</span>
           </button>
+<<<<<<< Updated upstream
         </div>
 
         <div class="hand-panel hand-panel--right">
@@ -545,6 +594,9 @@
               aria-hidden="true"
             ></div>
           </div>
+=======
+
+>>>>>>> Stashed changes
         </div>
       </section>
     </main>

@@ -91,6 +91,7 @@ Quick and concise way of starting the application up on your end.
 4. Push to the Branch
 5. Open a Pull Request
 
+<<<<<<< Updated upstream
 ## Contributors
 
 ### Art Contributor
@@ -100,6 +101,17 @@ Thank you to Drake for the art used in this project. Reach out if you would like
 
 <a href="https://github.com/La-Colaborativa/Typing-Game/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=La-Colaborativa/Typing-Game"/>
+=======
+### Contributors
+
+# Art Contributor
+Thank you to Drake Henry for the art used in this project. Reach out if you would like to make commissions. He is in the <a href="#contact">Contact</a> section. 
+
+# GitHub Contributors
+
+<a href="https://github.com/La-Colaborativa/Typing-Game/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=La-Colaborativa/Typing-Game" alt="contrib.rocks image" />
+>>>>>>> Stashed changes
 </a>
 
 
@@ -108,21 +120,49 @@ Thank you to Drake for the art used in this project. Reach out if you would like
 
 Ideas to be integrated. Concepts are added as the project continues.
 
+<<<<<<< Updated upstream
 - [ ] Additional Options:
+=======
+- [x] Dyanmic Keyboard
+    - [ ] Visual Hands (Swaps to button)
+- [ ] Additional Options:
+    - [x] Highlight Word
+    - [x] Disable Score
+    - [x] Restart Score
+    - [x] Skip Repeats
+    - [x] Store Skip Repeats
+    - [x] Restart Resets Repeats
+    - [ ] Words, Phrases, & Sentences Checkbox
+    - [ ] Error Restart
+    - [ ] Skip Spaces
+    - [x] Restart Resets Repeats
+>>>>>>> Stashed changes
     - [ ] WPM Tracker
 
 See the [open issues](https://github.com/La-Colaborativa/Typing-Game/issues) for a full list of known issues and proposed features.
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 <!-- CONTACT -->
 ## Contact
 
 - Modesto Rodriguez - modestomazzoni@gmail.com
 - Nelson
+<<<<<<< Updated upstream
 - Drake Henry - (aathiallll@gmail.com)
+=======
+- Drake Henry - (email)
+>>>>>>> Stashed changes
 
 Project Link: [https://github.com/La-Colaborativa/Typing-Game/](https://github.com/La-Colaborativa/Typing-Game/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- Markdown Images -->
+<<<<<<< Updated upstream
 [product-screenshot]: images/window-screenshot.png
+=======
+[product-screenshot]: images/window-screenshot.png
+>>>>>>> Stashed changes
