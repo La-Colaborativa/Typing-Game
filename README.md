@@ -12,7 +12,7 @@
   <p align="center">
     A minimal, customizable typing game for the browser.
     <br />
-    <a href="https://github.com/La-Colaborativa/Typing-Game/README.md"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/La-Colaborativa/Typing-Game/README.md"><strong>Explore the doc »</strong></a>
     <br />
     <br />
     <a href="https://github.com/La-Colaborativa/Typing-Game/issues/new?q=state%3Aopen+label%3Abug">Report Bug</a>
