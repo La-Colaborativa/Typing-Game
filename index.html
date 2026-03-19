@@ -1,5 +1,13 @@
 <!-- HTML: The Structure -->
- 
+
+<style>
+  ul, ol {
+    /* Reduce default indents*/
+    padding-left: 15px;
+    padding-bottom: 5px;
+  }
+</style>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,14 +35,21 @@
             inputmode="text"
             autofocus
           />
-          <button id="Restart" class="btn btn-restart" type="button">Restart</button>
         </div>
 
+        <button id="Settings" class="btn btn-settings" type="button">Settings</button>
+        <button id="Restart" class="btn btn-restart" type="button">Restart</button>
+        
         <div class="meta-row">
           <div id="score-board" class="score">
             Score: <span id="score">0</span>
           </div>
-          <button id="Settings" class="btn settings" type="button">Settings</button>
+          <div id="wpm-board" class="message-stats">
+            WPM: <span id="wpm-value">0</span>
+          </div>
+          <div id="seconds-board" class="message-stats">
+            Secs: <span id="seconds-value">0</span>
+          </div>
         </div>
 
         <p class="message">Type the word exactly as shown!</p>
@@ -43,7 +58,7 @@
         <div id="settingsModal" class="settings-modal" role="dialog" aria-modal="true" aria-hidden="Modify Settings">
           <div class="settings-content">
             <button class="close" type="button" aria-label="Close settings">&times;</button>
-            <h2 class="settings-title">Settings</h2>
+            <h2 class="settings-title">Settings</h2><hr>
             <ul class="settings-list">
 
               <li>Highlight Word:
@@ -68,7 +83,7 @@
                     type="number"
                     id="input-store-skips-value"
                     min="1"
-                    max="50"
+                    max=""
                     step="1"
                   />
                   <button type="submit" class="btn btn-apply">Apply</button>
@@ -85,29 +100,121 @@
               <li>Disappearing Text:
                 <input type="checkbox" id="checkbox-settings-disappear-text">
                 <label for="checkbox-settings-disappear-text"></label></ul>
+              
+                <li>Disable WPM:
+                <input type="checkbox" id="checkbox-settings-disable-wpm">
+                <label for="checkbox-settings-disable-wpm"></label></ul>
             <br>
-            <h2 class="settings-title">Course Weeks</h2>
+            </hr>
+            <h2 class="settings-title">Study Weeks</h2>
+            <hr>
             <ul class="settings-list">
-              <hr>
-              <li>Week 1:
-                <input type="checkbox" id="checkbox-settings-week-1">
-                <label for="checkbox-settings-week-1"></label>
-              <li>Week 2:
-                <input type="checkbox" id="checkbox-settings-week-2">
-                <label for="checkbox-settings-week-2"></label>
-              <li>Week 3:
-                <input type="checkbox" id="checkbox-settings-week-3">
-                <label for="checkbox-settings-week-3"></label>
-              <li>Week 4:
-                <input type="checkbox" id="checkbox-settings-week-4">
-                <label for="checkbox-settings-week-4"></label>
-              <li>Week 5:
-                <input type="checkbox" id="checkbox-settings-week-5">
-                <label for="checkbox-settings-week-5"></label>
-              <li>Week 6:
-                <input type="checkbox" id="checkbox-settings-week-6">
-                <label for="checkbox-settings-week-6"></label>
+              <li>
+                <ins><b>Week 1:</b></ins>
+                <ul>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-1-words">words:</label>
+                    <input type="checkbox" id="checkbox-settings-week-1-words">
+                  </li>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-1-random">random:</label>
+                    <input type="checkbox" id="checkbox-settings-week-1-random">
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ins><b>Week 2:</b></ins>
+                <ul>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-2-words">words:</label>
+                    <input type="checkbox" id="checkbox-settings-week-2-words">
+                  </li>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-2-random">random:</label>
+                    <input type="checkbox" id="checkbox-settings-week-2-random">
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ins><b>Week 3:</b></ins>
+                <ul>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-3-words">words:</label>
+                    <input type="checkbox" id="checkbox-settings-week-3-words">
+                  </li>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-3-random">random:</label>
+                    <input type="checkbox" id="checkbox-settings-week-3-random">
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ins><b>Week 4:</b></ins>
+                <ul>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-4-words">words:</label>
+                    <input type="checkbox" id="checkbox-settings-week-4-words">
+                  </li>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-4-random">random:</label>
+                    <input type="checkbox" id="checkbox-settings-week-4-random">
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ins><b>Week 5:</b></ins>
+                <ul>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-5-words">words:</label>
+                    <input type="checkbox" id="checkbox-settings-week-5-words">
+                  </li>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-5-random">random:</label>
+                    <input type="checkbox" id="checkbox-settings-week-5-random">
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ins><b>Week 6:</b></ins>
+                <ul>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-6-words">words:</label>
+                    <input type="checkbox" id="checkbox-settings-week-6-words">
+                  </li>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-6-random">random:</label>
+                    <input type="checkbox" id="checkbox-settings-week-6-random">
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ins><b>Week 7:</b></ins>
+                <ul>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-7-words">words:</label>
+                    <input type="checkbox" id="checkbox-settings-week-7-words">
+                  </li>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-7-random">random:</label>
+                    <input type="checkbox" id="checkbox-settings-week-7-random">
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ins><b>Week 8:</b></ins>
+                <ul>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-8-words">words:</label>
+                    <input type="checkbox" id="checkbox-settings-week-8-words">
+                  </li>
+                  <li class="setting-row">
+                    <label for="checkbox-settings-week-8-random">random:</label>
+                    <input type="checkbox" id="checkbox-settings-week-8-random">
+                  </li>
+                </ul>
+              </li>
             </ul>
+          </hr>
           </div>
         </div>
       </section>
@@ -115,9 +222,19 @@
       <!-- BOTTOM: keyboard & hands -->
       <div class="keyboard-stage">
         <div class="hand-panel hand-panel--left">
-          <img id="left-hand-image" src="./images/hands/left-idle.png" alt="Left hand guide" />
+          <div class="hand-stack">
+            <img
+              class="hand-base"
+              src="./images/hands/left-idle.png"
+              alt="Left hand guide"
+            />
+            <div
+              id="left-hand-overlays"
+              class="hand-overlays"
+              aria-hidden="true"
+            ></div>
+          </div>
         </div>
-
         <div class="keyboard" role="group" aria-label="On screen keyboard">
           <!-- your existing keyboard buttons stay exactly here -->
           <button class="key" data-key="`">
@@ -427,9 +544,19 @@
         </div>
 
         <div class="hand-panel hand-panel--right">
-          <img id="right-hand-image" src="./images/hands/right-idle.png" alt="Right hand guide" />
+          <div class="hand-stack">
+            <img
+              class="hand-base"
+              src="./images/hands/right-idle.png"
+              alt="Right hand guide"
+            />
+            <div
+              id="right-hand-overlays"
+              class="hand-overlays"
+              aria-hidden="true"
+            ></div>
+          </div>
         </div>
-      </div>
       </section>
     </main>
 

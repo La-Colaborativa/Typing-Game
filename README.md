@@ -99,7 +99,7 @@ Thank you to Drake for the art used in this project. Reach out if you would like
 ### GitHub Contributors
 
 <a href="https://github.com/La-Colaborativa/Typing-Game/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=La-Colaborativa/Typing-Game" alt="contrib.rocks image" />
+  <img src="https://contrib.rocks/image?repo=La-Colaborativa/Typing-Game"/>
 </a>
 
 
@@ -108,18 +108,17 @@ Thank you to Drake for the art used in this project. Reach out if you would like
 
 Ideas to be integrated. Concepts are added as the project continues.
 
-- [ ] Additional Options:
-    - [ ] WPM Tracker
+- [x] All features:
+    - [x] Have been implemented.
 
 See the [open issues](https://github.com/La-Colaborativa/Typing-Game/issues) for a full list of known issues and proposed features.
-
 
 <!-- CONTACT -->
 ## Contact
 
 - Modesto Rodriguez - modestomazzoni@gmail.com
-- Nelson
-- Drake Henry - (aathiallll@gmail.com)
+- Nelson Montesinos - nelsonm@la-colaborativa.org
+- Drake Henry - aathiallll@gmail.com
 
 Project Link: [https://github.com/La-Colaborativa/Typing-Game/](https://github.com/La-Colaborativa/Typing-Game/)
 

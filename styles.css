@@ -31,13 +31,13 @@
 
 html,
 body {
-  height: 100%;
+  height: 2%;
 }
 
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(1200px 700px at 30% 10%, #3b5873 0%, var(--bg) 55%);
+  background: radial-gradient(1200px 4000px at 30% 10%, #3b5873 0%, var(--bg) 55%);
   color: var(--text);
 }
 
@@ -105,7 +105,6 @@ body {
 .input-row {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 10px;
   align-items: center;
 }
 
@@ -131,11 +130,13 @@ body {
 }
 
 .meta-row {
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  padding: 10px;
 }
 
 .score {
@@ -145,8 +146,17 @@ body {
 
 .message {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--muted);
+  user-select: none;
+  align-self: center;
+  justify-content: center;
+  display: flex;
+}
+
+.message-stats {
+  margin: 0;
+  font-size: 1rem;
   user-select: none;
   align-self: center;
 }
@@ -171,13 +181,16 @@ body {
 }
 
 .btn-restart {
+  margin-top: 10px;
   background: rgba(39, 185, 230, 0.22);
   border: 2px solid rgba(39, 185, 230, 0.35);
+  float: right;
 }
 
 .btn-settings {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  margin-top: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  float: left;
 }
 
 .btn-apply{
@@ -213,9 +226,30 @@ input[type="checkbox"] {
   grid-row: 3;
 }
 
-.hand-panel {
-  display: grid;
-  place-items: center;
+.hand-stack {
+  position: relative;
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 220 / 260;
+}
+
+.hand-base,
+.hand-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.28));
+  opacity: 1;
+}
+
+.hand-overlays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .hand-panel img {
@@ -388,6 +422,10 @@ input[type="checkbox"] {
   border-radius: 14px;
   padding: 18px;
   box-shadow: var(--shadow);
+  overflow: auto;
+  height: 75%;
+  scrollbar-width: thin;
+  scrollbar-color: #b8b8b8 transparent; /* Make the bar transparent */
 }
 
 .settings-title {
@@ -423,9 +461,7 @@ input[type="checkbox"] {
     width: 100%;
   }
 
-  .meta-row {
-    justify-content: center;
-  }
+  
 
   .key{ /* keeps text in-line so it doesn't float into the other keys */
     padding: 6px 6px;
