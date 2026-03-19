@@ -7,6 +7,7 @@ export const settings_config_defaults = {
   end_incomplete: false,
   reset_repeats: false,
   disappear_text: false,
+  disable_wpm: false, // set back to default: true
 
   use_week_1: false,
   use_week_2: false,

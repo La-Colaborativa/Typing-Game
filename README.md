@@ -108,8 +108,8 @@ Thank you to Drake for the art used in this project. Reach out if you would like
 
 Ideas to be integrated. Concepts are added as the project continues.
 
-- [ ] Additional Options:
-    - [ ] WPM Tracker
+- [x] All features:
+    - [x] Have been implemented.
 
 See the [open issues](https://github.com/La-Colaborativa/Typing-Game/issues) for a full list of known issues and proposed features.
 

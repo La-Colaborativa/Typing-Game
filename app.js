@@ -29,6 +29,8 @@ let currentWord = null;
 let score = 0;
 let repeat_list = [];
 window.repeat_list = repeat_list; // DevTools
+let startTime = null;
+let endTime = null
 
 // 1. DOM HELPERS
 const $ = (id) => document.getElementById(id);
@@ -38,7 +40,11 @@ const elements = {
   input: $("input-field"),
   score: $("score"),
   scoreBoard: $("score-board"),
-
+  wpmBoard: $("wpm-board"),
+  secondsBoard: $("seconds-board"),
+  wpmValue: $("wpm-value"),
+  secondsValue: $("seconds-value"),
+  
   modal: $("settingsModal"),
   settingsButton: $("Settings"),
   restartButton: $("Restart"),
@@ -82,6 +88,7 @@ const checkboxMap = {
   end_incomplete: $("checkbox-settings-end-incomplete"),
   reset_repeats: $("checkbox-settings-reset-repeats"),
   disappear_text: $("checkbox-settings-disappear-text"),
+  disable_wpm: $("checkbox-settings-disable-wpm"),
 
   use_week_1_words: $("checkbox-settings-week-1-words"),
   use_week_1_random: $("checkbox-settings-week-1-random"),
@@ -113,6 +120,7 @@ function syncSettingsToUI() {
   elements.storeSkipsInput.placeholder = settings.store_skips;
   renderStoreSkips();
   updateScoreboardVisibility();
+  updateWPMScoreboardVisibility();
 }
 
 function bindSettingsEvents() {
@@ -151,11 +159,19 @@ function handleSettingChange(key) {
     case "disable_score":
       updateScoreboardVisibility();
       break;
+    case "disable_wpm":
+      updateWPMScoreboardVisibility();
+      break;
   }
 }
 
 function updateScoreboardVisibility() {
   elements.scoreBoard.classList.toggle("hidden", settings.disable_score);
+}
+
+function updateWPMScoreboardVisibility() {
+  elements.wpmBoard.classList.toggle("hidden", settings.disable_wpm);
+  elements.secondsBoard.classList.toggle("hidden", settings.disable_wpm);
 }
 
 function renderStoreSkips() {
@@ -360,7 +376,17 @@ function getFingerHintsForChar(char) {
 
   if (fingerInfo.left) result.left.add(fingerInfo.left);
   if (fingerInfo.right) result.right.add(fingerInfo.right);
-  if (needsShift) result.left.add("pinky");
+
+  if (needsShift) {
+    const usesLeftHand = !!fingerInfo.left;
+    const usesRightHand = !!fingerInfo.right;
+
+    if (usesLeftHand && !usesRightHand) {
+      result.right.add("pinky"); // use Right Shift
+    } else {
+      result.left.add("pinky"); // use Left Shift
+    }
+  }
 
   return result;
 }
@@ -387,6 +413,28 @@ function hoverKey(keyValue) {
     .forEach((el) => el.classList.add("key--hover"));
 }
 
+function getShiftKeyForChar(char) {
+  if (!char) return null;
+
+  let needsShift = false;
+  let baseKey = char;
+
+  if (char >= "A" && char <= "Z") {
+    needsShift = true;
+  } else if (shiftMap[char]) {
+    needsShift = true;
+    baseKey = shiftMap[char];
+  }
+
+  if (!needsShift) return null;
+
+  baseKey = baseKey.toUpperCase();
+  const fingerInfo = keyFingerMap[baseKey];
+  if (!fingerInfo) return "shift";
+
+  return fingerInfo.left ? "shift-1" : "shift";
+}
+
 function updateKeyHover() {
   clearKeyHover();
   updateHandHints();
@@ -399,14 +447,16 @@ function updateKeyHover() {
     return;
   }
 
-  if (expectedChar >= "A" && expectedChar <= "Z") { // Shift keys for alphabet, rest are special keys.
-    hoverKey("shift");
+  const shiftKey = getShiftKeyForChar(expectedChar);
+
+  if (expectedChar >= "A" && expectedChar <= "Z") {
+    if (shiftKey) hoverKey(shiftKey);
     hoverKey(expectedChar);
     return;
   }
 
   if (shiftMap[expectedChar]) {
-    hoverKey("shift");
+    if (shiftKey) hoverKey(shiftKey);
     hoverKey(shiftMap[expectedChar]);
     return;
   }
@@ -595,14 +645,30 @@ function processInput() {
   const correctSoFar = updateCharacterStates(quoteSpans, inputChars);
   const isComplete = inputChars.length === currentWord.length;
 
+  if(inputChars.length > 0 && startTime === null){
+    startTime = performance.now()
+  }
+
   if (!isComplete) return;
 
   if (correctSoFar) {
+    endTime = performance.now()
+    const seconds = (endTime - startTime) / 1000;
+    const minutes = seconds / 60;
+    const wpm = (currentWord.length / 5) / minutes;
+
+    elements.wpmValue.innerText = Math.round(wpm);
+    elements.secondsValue.innerText = seconds.toFixed(2);
+
+    startTime = null;
+    endTime = null;
     completeRound({ correct: true });
     return;
   }
 
   if (settings.end_incomplete) {
+    startTime = null;
+    endTime = null;
     completeRound({ correct: false });
   }
 }
