@@ -79,6 +79,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 
 #word-display { /* Text to type */
