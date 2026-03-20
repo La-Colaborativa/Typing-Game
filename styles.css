@@ -315,7 +315,8 @@ input[type="checkbox"] {
   color: #ffffff;
 }
 
-/* detecting the keys for hover interaction */
+/* vv detecting the keys for hover interaction vv*/
+
 /* ------------------- Row 1 ------------------- */
 .key[data-key="`"] { grid-row: 1; grid-column: 1; }
 .key[data-key="1"] { grid-row: 1; grid-column: 2; }

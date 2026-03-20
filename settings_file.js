@@ -1,3 +1,4 @@
+// All defaults. Does not save after a webpage restart.
 export const settings_config_defaults = {
   color_current: true,
   disable_score: false,
