@@ -218,6 +218,8 @@ function bindUIEvents() {
 function restartGame() { // Restart was hit. Resets options if active.
   if (settings.reset_score) {
     score = 0;
+    elements.wpmValue.innerText = 0;
+    elements.secondsValue.innerText = 0;
     updateScore();
   }
 
@@ -654,11 +656,14 @@ function processInput() {
   if (correctSoFar) {
     endTime = performance.now()
     const seconds = (endTime - startTime) / 1000;
-    const minutes = seconds / 60;
+    const seconds_time = (seconds % 60).toFixed(0); // Two different seconds to calculate WPM as accurately as possible
+    const minutes = seconds / 60;                   // and to display it in time format (00m:00s).
     const wpm = (currentWord.length / 5) / minutes;
 
+    const minutes_time = Math.floor((seconds % 3600) / 60);
+
     elements.wpmValue.innerText = Math.round(wpm);
-    elements.secondsValue.innerText = seconds.toFixed(2);
+    elements.secondsValue.innerText = (`${minutes_time.toString().padStart(2, '0')}:${seconds_time.toString().padStart(2, '0')}`);
 
     startTime = null;
     endTime = null;
@@ -690,3 +695,5 @@ function init() {
 }
 
 init();
+
+// Sorry to whoever is managing this file in the future it is disgustinly huge.
