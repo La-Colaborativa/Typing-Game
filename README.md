@@ -41,7 +41,7 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contributors">Contributors</a></li>
       <ul>
-        <li><a href=#art-ontributor>Art Contributor</a>
+        <li><a href=#art-contributor>Art Contributor</a>
         <li><a href=#github-contributors>GitHub Contributors</a>
       </ul>
     <li><a href="#roadmap">Roadmap</a></li>
