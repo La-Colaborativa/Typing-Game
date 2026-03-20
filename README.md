@@ -39,8 +39,10 @@
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contributors">Contributors</a></li>
       <ul>
-       <li><a href="#contributors">Contributors</a></li>
+        <li><a href=#art-ontributor>Art Contributor</a>
+        <li><a href=#github-contributors>GitHub Contributors</a>
       </ul>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -54,7 +56,6 @@
 [![Placeholder Image][product-screenshot]](https://github.com/La-Colaborativa/Typing-Game/images/window-screenshot.png)
 
 A typing game made for La Colaborativa to help the youth and elders who want to learn the proper form and methods of typing.
-
 
 ### Web-App Languages
 

@@ -1,27 +1,17 @@
 // JAVASCRIPT: The Logic
 
 import {
-  words,
-  phrases,
-  sentences,
-  week_1_curriculum_words,
-  week_1_curriculum_random,
-  week_2_curriculum_words,
-  week_2_curriculum_random,
-  week_3_curriculum_words,
-  week_3_curriculum_random,
-  week_4_curriculum_words,
-  week_4_curriculum_random,
-  week_5_curriculum_words,
-  week_5_curriculum_random,
-  week_6_curriculum_words,
-  week_6_curriculum_random,
-  week_7_curriculum_words,
-  week_7_curriculum_random,
-  week_8_curriculum_words,
-  week_8_curriculum_random,
+  words, phrases, sentences,
+  week_1_curriculum_words, week_1_curriculum_random,
+  week_2_curriculum_words, week_2_curriculum_random,
+  week_3_curriculum_words, week_3_curriculum_random,
+  week_4_curriculum_words, week_4_curriculum_random,
+  week_5_curriculum_words, week_5_curriculum_random,
+  week_6_curriculum_words, week_6_curriculum_random,
+  week_7_curriculum_words, week_7_curriculum_random,
+  week_8_curriculum_words, week_8_curriculum_random,
 } from "./word-banks.js";
-import { settings_config_defaults } from "./settings_file.js";
+import {settings_config_defaults } from "./settings_file.js";
 
 const settings = { ...settings_config_defaults };
 
@@ -32,8 +22,9 @@ window.repeat_list = repeat_list; // DevTools
 let startTime = null;
 let endTime = null
 
+
 // 1. DOM HELPERS
-const $ = (id) => document.getElementById(id);
+const $ = (id) => document.getElementById(id); // Removes the reptition of having to manually type out document.getElem...
 
 const elements = {
   wordDisplay: $("word-display"),
@@ -60,24 +51,17 @@ const elements = {
   keyButtons: document.querySelectorAll(".keyboard .key")
 };
 
+
 // 2. SETTINGS STATE
 const weeklyCurriculumMap = {
-  use_week_1_words: week_1_curriculum_words,
-  use_week_1_random: week_1_curriculum_random,
-  use_week_2_words: week_2_curriculum_words,
-  use_week_2_random: week_2_curriculum_random,
-  use_week_3_words: week_3_curriculum_words,
-  use_week_3_random: week_3_curriculum_random,
-  use_week_4_words: week_4_curriculum_words,
-  use_week_4_random: week_4_curriculum_random,
-  use_week_5_words: week_5_curriculum_words,
-  use_week_5_random: week_5_curriculum_random,
-  use_week_6_words: week_6_curriculum_words,
-  use_week_6_random: week_6_curriculum_random,
-  use_week_7_words: week_7_curriculum_words,
-  use_week_7_random: week_7_curriculum_random,
-  use_week_8_words: week_8_curriculum_words,
-  use_week_8_random: week_8_curriculum_random,
+  use_week_1_words: week_1_curriculum_words, use_week_1_random: week_1_curriculum_random,
+  use_week_2_words: week_2_curriculum_words, use_week_2_random: week_2_curriculum_random,
+  use_week_3_words: week_3_curriculum_words, use_week_3_random: week_3_curriculum_random,
+  use_week_4_words: week_4_curriculum_words, use_week_4_random: week_4_curriculum_random,
+  use_week_5_words: week_5_curriculum_words, use_week_5_random: week_5_curriculum_random,
+  use_week_6_words: week_6_curriculum_words, use_week_6_random: week_6_curriculum_random,
+  use_week_7_words: week_7_curriculum_words, use_week_7_random: week_7_curriculum_random,
+  use_week_8_words: week_8_curriculum_words, use_week_8_random: week_8_curriculum_random,
 };
 
 const checkboxMap = {
@@ -195,6 +179,7 @@ function handleStoreSkipsSubmit(e) { // Deals with potential store skips option 
   renderStoreSkips();
 }
 
+
 // 3. MODAL / BUTTONS
 function bindUIEvents() {
   elements.settingsButton.onclick = () => { // Opens settings.
@@ -218,8 +203,8 @@ function bindUIEvents() {
 function restartGame() { // Restart was hit. Resets options if active.
   if (settings.reset_score) {
     score = 0;
-    elements.wpmValue.innerText = 0;
-    elements.secondsValue.innerText = 0;
+    elements.wpmValue.innerText = "0";
+    elements.secondsValue.innerText = "00:00";
     updateScore();
   }
 
@@ -230,6 +215,7 @@ function restartGame() { // Restart was hit. Resets options if active.
   elements.input.focus(); // Focus on input element (input box).
   initRound();
 }
+
 
 // 4. HAND / KEYBOARD
 const handImages = {
@@ -553,6 +539,7 @@ function showNewWord() {
 
   return currentWord;
 }
+
 
 // 6. INPUT / ROUND LOGIC
 function getExpectedChar() {
