@@ -49,8 +49,7 @@
             WPM: <span id="wpm-value">0</span>
           </div>
           <div id="seconds-board" class="message-stats">
-            Secs: <span id="seconds-value">0</span>
-          </div>
+            ⏱️: <span id="seconds-value">00:00</span>s</div>
         </div>
 
         <p class="message">Type the word exactly as shown!</p>
@@ -59,18 +58,28 @@
         <div id="settingsModal" class="settings-modal" role="dialog" aria-modal="true" aria-hidden="Modify Settings">
           <div class="settings-content">
             <button class="close" type="button" aria-label="Close settings">&times;</button>
-            <h1 class="settings-title">Settings</h1><hr>
+            <h1 class="settings-title">Settings</h1>
+            
+            <hr><b>Text Options:</b></hr>
             <ul class="settings-list">
 
-              <li>Highlight Word:
+              <li>Complete With Errors:
+                <input type="checkbox" id="checkbox-settings-end-incomplete">
+                <label for="checkbox-settings-end-incomplete"></label>
+              
+              <li>Highlight Words:
                 <input type="checkbox" id="checkbox-settings-highlight">
                 <label for="checkbox-settings-highlight"></label>
               
-              <li>Disappearing Text:
+              <li>Text Disappear:
                 <input type="checkbox" id="checkbox-settings-disappear-text">
                 <label for="checkbox-settings-disappear-text"></label></ul>
 
-                <hr></hr>
+                <hr><b>Score Board Options:</b></hr>
+
+                <li>Restart Resets Score Board:
+                <input type="checkbox" id="checkbox-settings-reset-score">
+                <label for="checkbox-settings-reset-score"></label>
 
               <li>Disable Score:
                 <input type="checkbox" id="checkbox-settings-disable-score">
@@ -79,24 +88,16 @@
               <li>Disable WPM:
                 <input type="checkbox" id="checkbox-settings-disable-wpm">
                 <label for="checkbox-settings-disable-wpm"></label></ul>
-              
-              <li>Restart Resets Score:
-                <input type="checkbox" id="checkbox-settings-reset-score">
-                <label for="checkbox-settings-reset-score"></label>
 
-                <hr></hr>
+                <hr><b>Repeating Words Options:</b></hr>
 
-              <li>Skip With Errors:
-                <input type="checkbox" id="checkbox-settings-end-incomplete">
-                <label for="checkbox-settings-end-incomplete"></label>
-              
-              <li>Skip Repeats:
-                <input type="checkbox" id="checkbox-settings-skip-repeats">
-                <label for="checkbox-settings-skip-repeats"></label>
-              
-              <li>Restart Clears Repeats:
+                <li>Restart Clears Repeating List:
                 <input type="checkbox" id="checkbox-settings-reset-repeats">
                 <label for="checkbox-settings-reset-repeats"></label>
+              
+              <li>Skip Word Repeats:
+                <input type="checkbox" id="checkbox-settings-skip-repeats">
+                <label for="checkbox-settings-skip-repeats"></label>
               
               <li>Store Skip Repeats: <span id="settings-store-skips"></span>
                 <form id="store-skips-form">
@@ -115,11 +116,11 @@
 
             <br>
             </hr>
-            <h2 class="settings-title">Study Weeks</h2>
+            <h2 class="settings-title">Weekly Material</h2>
             <hr>
             <ul class="settings-list">
               <li>
-                <ins><b>Week 1:</b></ins>
+                <b>Week 1:</b>
                 <ul>
                   <li class="setting-row">
                     <label for="checkbox-settings-week-1-words">words:</label>
@@ -132,7 +133,7 @@
                 </ul>
               </li>
               <li>
-                <ins><b>Week 2:</b></ins>
+                <b>Week 2:</b>
                 <ul>
                   <li class="setting-row">
                     <label for="checkbox-settings-week-2-words">words:</label>
@@ -145,7 +146,7 @@
                 </ul>
               </li>
               <li>
-                <ins><b>Week 3:</b></ins>
+                <b>Week 3:</b>
                 <ul>
                   <li class="setting-row">
                     <label for="checkbox-settings-week-3-words">words:</label>
@@ -158,7 +159,7 @@
                 </ul>
               </li>
               <li>
-                <ins><b>Week 4:</b></ins>
+                <b>Week 4:</b>
                 <ul>
                   <li class="setting-row">
                     <label for="checkbox-settings-week-4-words">words:</label>
@@ -171,7 +172,7 @@
                 </ul>
               </li>
               <li>
-                <ins><b>Week 5:</b></ins>
+                <b>Week 5:</b>
                 <ul>
                   <li class="setting-row">
                     <label for="checkbox-settings-week-5-words">words:</label>
@@ -184,7 +185,7 @@
                 </ul>
               </li>
               <li>
-                <ins><b>Week 6:</b></ins>
+                <b>Week 6:</b>
                 <ul>
                   <li class="setting-row">
                     <label for="checkbox-settings-week-6-words">words:</label>
@@ -197,7 +198,7 @@
                 </ul>
               </li>
               <li>
-                <ins><b>Week 7:</b></ins>
+                <b>Week 7:</b>
                 <ul>
                   <li class="setting-row">
                     <label for="checkbox-settings-week-7-words">words:</label>
@@ -210,7 +211,7 @@
                 </ul>
               </li>
               <li>
-                <ins><b>Week 8:</b></ins>
+                <b>Week 8:</b>
                 <ul>
                   <li class="setting-row">
                     <label for="checkbox-settings-week-8-words">words:</label>
