@@ -45,7 +45,7 @@ body {
 }
 
 .panel { /* Shared panel styling */
-  width: min(var(--maxw), 92vw);
+  width: min(85vw, 85vw);
   background: linear-gradient(180deg, var(--panel) 0%, rgba(52, 73, 94, 0.92) 100%);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -65,7 +65,7 @@ body {
 
 .word-display {
   max-height: 180px;
-  height: clamp(160px, 32vh, 360px);
+  height: clamp(160px, 5vh, 360px);
   display: grid;
   place-items: center;
   text-align: center;
@@ -457,6 +457,12 @@ input[type="checkbox"] {
   }
 
   .hand-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) { /* Make hands disappear if window too small */
+  .keyboard-stage {
     display: none;
   }
 }
