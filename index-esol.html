@@ -10,59 +10,185 @@
   </style>
 </head>
 <body>
-  <section class="display layout">
-    <main class="main-content">
-      <div id="question-display"></div>
-      <div id="pool-answer-display"></div>
-    </main>
+  <form id="assignment-form" action="https://formspree.io/f/xwvwdzjd" method="POST">
+    <section class="display layout">
+      <main class="main-content">
+        <div id="question-display"></div>
+        <div id="pool-answer-display"></div>
+      </main>
 
-    <aside class="settings-sidebar">
-      <h2 class="settings-title">Side-Panel</h2>
+      <aside class="settings-sidebar">
+        <h2 class="settings-title">Side-Panel</h2>
 
-      <div class="settings-group">
-        <b>Question Prompts</b>
-        <ul class="settings-list">
-          <li>
-            <input type="checkbox" id="checkbox-settings-personal-pronouns" checked>:
-            <label for="checkbox-settings-personal-pronouns">&nbsp;Personal Pronouns</label>
-            <input type="number" id="input-settings-personal-pronouns" min="1" step="1">
-          </li>
+        <div class="settings-scroll">
+          <b>Configure & Submit</b>
+            <li>
+              <input type="checkbox" id="checkbox-settings-personal-pronouns" checked>
+              <label for="checkbox-settings-personal-pronouns">&nbsp;Personal Pronouns</label>
+              <input type="number" id="input-settings-personal-pronouns" min="1" step="1">
+            </li>
 
-          <li>
-            <input type="checkbox" id="checkbox-settings-prepositions" checked>:
-            <label for="checkbox-settings-prepositions">&nbsp;Prepositions</label>
-            <input type="number" id="input-settings-prepositions" min="1" step="1">
-          </li>
+            <li>
+              <input type="checkbox" id="checkbox-settings-prepositions" checked>
+              <label for="checkbox-settings-prepositions">&nbsp;Prepositions</label>
+              <input type="number" id="input-settings-prepositions" min="1" step="1">
+            </li>
 
-          <li>
-            <input type="checkbox" id="checkbox-settings-demonstratives" checked>:
-            <label for="checkbox-settings-demonstratives">&nbsp;Demonstratives</label>
-            <input type="number" id="input-settings-demonstratives" min="1" step="1">
-          </li>
+            <li>
+              <input type="checkbox" id="checkbox-settings-demonstratives" checked>
+              <label for="checkbox-settings-demonstratives">&nbsp;Demonstratives</label>
+              <input type="number" id="input-settings-demonstratives" min="1" step="1">
+            </li>
 
-          <li>
-            <input type="checkbox" id="checkbox-settings-quantity" checked>:
-            <label for="checkbox-settings-quantity">&nbsp;Quantity</label>
-            <input type="number" id="input-settings-quantity" min="1" step="1">
-          </li>
-        </ul>
-        <div class="settings-group">
-        <button id="restart-questions" class="btn btn-restart" type="button">Restart | New Quiz</button>
-      </div>
-      </div>
-    <button id="submit-answers" class="btn btn-submit" type="button">Submit</button>
-      <div class="quiz-actions">
-        <div class="results-row">
-          <div id="quiz-results"></div>
+            <li>
+              <input type="checkbox" id="checkbox-settings-quantity" checked>
+              <label for="checkbox-settings-quantity">&nbsp;Quantity</label>
+              <input type="number" id="input-settings-quantity" min="1" step="1">
+            </li>
+
+            <li>
+              <input type="checkbox" id="checkbox-settings-bestFit" checked>
+              <label for="checkbox-settings-bestFit">&nbsp;Match To Image</label>
+              <input type="number" id="input-settings-bestFit" min="1" step="1">
+            </li>
+
+            <li>
+              <input type="checkbox" id="checkbox-settings-typeQuestions" checked>
+              <label for="checkbox-settings-typeQuestions">&nbsp;Input Box</label>
+              <input type="number" id="input-settings-typeQuestions" min="1" step="1">
+            </li>
         </div>
-      </div>
-    </aside>
-  </section>
+
+        <div class="settings-footer">
+          <label for="student-name"><b>Student Name: </b></label>
+          <input type="text" id="student-name" name="student_name" required>
+
+          <label for="student-email"><b>Student Email: </b></label>
+          <input type="email" id="student-email" name="email" required>
+
+          <label for="class-period"><b>Class #:</b></label>
+          <input type="text" id="class-period" name="class_period" required>
+
+          <input type="hidden" id="assignment-results" name="assignment_results">
+          <input type="hidden" id="assignment-answers" name="assignment_answers">
+          <input type="hidden" id="assignment-settings" name="assignment_settings">
+          <button id="restart-questions" class="btn btn-restart" type="button">Restart</button>
+          <button id="submit-answers" class="btn btn-submit" type="submit">Submit</button>
+
+          <div class="quiz-actions">
+            <div class="results-row">
+              <div id="quiz-results"></div>
+            </div>
+            <p class="results-row" id="form-status"></p>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </form>
 
   <div id="lightbox" class="lightbox" aria-hidden="true">
     <span id="lightbox-close" class="lightbox-close">&times;</span>
     <img id="lightbox-image" src="" alt="">
   </div>
+
   <script type="module" src="./app-esol.js"></script>
+
+  <script>
+
+  const form = document.getElementById("assignment-form");
+  const statusEl = document.getElementById("form-status");
+
+  function getSettingsSummary() {
+    const settings = [
+      {
+        name: "Personal Pronouns",
+        checked: document.getElementById("checkbox-settings-personal-pronouns")?.checked,
+        count: document.getElementById("input-settings-personal-pronouns")?.value || ""
+      },
+      {
+        name: "Prepositions",
+        checked: document.getElementById("checkbox-settings-prepositions")?.checked,
+        count: document.getElementById("input-settings-prepositions")?.value || ""
+      },
+      {
+        name: "Demonstratives",
+        checked: document.getElementById("checkbox-settings-demonstratives")?.checked,
+        count: document.getElementById("input-settings-demonstratives")?.value || ""
+      },
+      {
+        name: "Quantity",
+        checked: document.getElementById("checkbox-settings-quantity")?.checked,
+        count: document.getElementById("input-settings-quantity")?.value || ""
+      },
+      {
+        name: "Match To Image",
+        checked: document.getElementById("checkbox-settings-bestFit")?.checked,
+        count: document.getElementById("input-settings-bestFit")?.value || ""
+      },
+      {
+        name: "Input Box",
+        checked: document.getElementById("checkbox-settings-typeQuestions")?.checked,
+        count: document.getElementById("input-settings-typeQuestions")?.value || ""
+      }
+    ];
+
+    return settings
+      .map(s => `${s.name}: ${s.checked ? "On" : "Off"}${s.count && s.checked ? ` (${s.count})` : ""}`)
+      .join("\n");
+  }
+
+  function getResultsSummary() {
+    const results = document.getElementById("quiz-results");
+    return results ? results.innerText.trim() : "";
+  }
+
+  function buildAssignmentAnswers() {
+    if (!Array.isArray(window.quizSubmissionData) || !window.quizSubmissionData.length) {
+      return "No assignment answer data found.";
+    }
+
+    return window.quizSubmissionData
+      .map(item => {
+        let line = `${item.question}\nResponse: ${item.studentAnswer}`;
+        if (!item.isCorrect) {
+          line += `\nCorrect Answer: ${item.correctAnswer}`;
+        }
+        return line;
+      })
+      .join("\n\n");
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    checkAnswers();
+
+    document.getElementById("assignment-settings").value = getSettingsSummary();
+    document.getElementById("assignment-results").value = getResultsSummary() || "No results shown.";
+    document.getElementById("assignment-answers").value = buildAssignmentAnswers();
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (response.ok) {
+        statusEl.textContent = "Assignment emailed successfully.";
+        form.reset();
+      } else {
+        statusEl.textContent = "There was a problem emailing the assignment.";
+      }
+    } catch (error) {
+      console.error(error);
+      statusEl.textContent = "There was a problem emailing the assignment.";
+    }
+  });
+</script>
 </body>
 </html>

@@ -1,16 +1,20 @@
 export const settings_config_defaults = {
   questionCounts: {
     pronounsQuestions: 3,
-    prepositionsQuestions: 3,
+    prepositionsQuestions: 4,
     demonstrativesQuestions: 3,
-    quantityQuestions: 6
+    quantityQuestions: 6,
+    bestFitQuestions: 2,
+    typeQuestions: 2,
   },
   answersPerQuestion: 4,
   generateGroups: {
     pronounsQuestions: true,
     prepositionsQuestions: true,
     demonstrativesQuestions: true,
-    quantityQuestions: true
+    quantityQuestions: true,
+    bestFitQuestions: true,
+    typeQuestions: true
   }
 };
 
