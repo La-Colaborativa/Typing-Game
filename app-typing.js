@@ -382,7 +382,7 @@ function getFingerHintsForChar(char) {
 function updateHandHints() {
   const expectedChar = getExpectedChar();
 
-  if (expectedChar === undefined) {
+  if (expectedChar === undefined) { // Defaults to no hand image.
     setHandImages([], []);
     return;
   }
@@ -401,7 +401,7 @@ function hoverKey(keyValue) {
     .forEach((el) => el.classList.add("key--hover"));
 }
 
-function getShiftKeyForChar(char) {
+function getShiftKeyForChar(char) { // uppercase for whatever char is needed.
   if (!char) return null;
 
   let needsShift = false;
@@ -513,7 +513,7 @@ function buildWordDisplay(targetText) { // Creates spans for word display.
   elements.wordDisplay.appendChild(fragment);
 }
 
-function highlightCurrentChar(index = 0) {
+function highlightCurrentChar(index = 0) { // current index (current char) is colored differently.
   if (!settings.color_current) return;
 
   const chars = elements.wordDisplay.querySelectorAll("[data-char]");
@@ -524,7 +524,7 @@ function highlightCurrentChar(index = 0) {
   }
 }
 
-function showNewWord() {
+function showNewWord() { // get new word from available pool.
   const pool = getAvailablePool();
   currentWord = pickRandomItem(pool);
 
@@ -551,7 +551,7 @@ function getQuoteSpans() {
   return elements.wordDisplay.querySelectorAll("[data-char]");
 }
 
-function scrollCurrentCharIntoView(spans, index) {
+function scrollCurrentCharIntoView(spans, index) { // Keeps the current word being written in view. User can manually scroll.
   if (index >= spans.length) return;
 
   spans[index].scrollIntoView({
@@ -561,7 +561,7 @@ function scrollCurrentCharIntoView(spans, index) {
   });
 }
 
-function updateCharacterStates(spans, inputChars) {
+function updateCharacterStates(spans, inputChars) { // Colors characters based on if it's correct or not + settings.
   let correctSoFar = true;
 
   spans.forEach((span, index) => {
